@@ -5,6 +5,14 @@
   text-align: center;
 }
 
+#down_cloud {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  size: 5%;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

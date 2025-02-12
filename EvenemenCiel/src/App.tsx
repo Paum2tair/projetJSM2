@@ -17,6 +17,7 @@ function App() {
           <Route path="/panier" element={<> <Panier/> </>} />
         </Routes>
       </Router>
+      <img id="down_cloud" src="/Backdown.png" alt="NuagesEnBas"/>
     </>
   )
 }
