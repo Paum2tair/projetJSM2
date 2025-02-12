@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Accueil from './pages/Accueil';
 import Panier from './pages/Panier';
 import Details from './pages/Details';
-import Footer from './components/footer';
+import Footer from './components/Footer';
 
 function App() {
 
