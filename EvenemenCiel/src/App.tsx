@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Accueil from './pages/Accueil';
 import Panier from './pages/Panier';
 import Details from './pages/Details';
+import Footer from './components/footer';
 
 function App() {
 
@@ -12,12 +13,11 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<> <Accueil/> </>} />
+          <Route path="/" element={<> <Accueil/><Footer/> </>} />
           <Route path="/details" element={<> <Details/> </>} />
           <Route path="/panier" element={<> <Panier/> </>} />
         </Routes>
       </Router>
-      <img id="down_cloud" src="/Backdown.png" alt="NuagesEnBas"/>
     </>
   )
 }
