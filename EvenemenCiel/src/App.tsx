@@ -6,7 +6,6 @@ import Accueil from './pages/Accueil';
 import Panier from './pages/Panier';
 import Details from './pages/Details';
 
-
 function App() {
 
   return (
