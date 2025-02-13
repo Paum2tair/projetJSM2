@@ -51,6 +51,7 @@ const Accueil: React.FC = () => {
                 >
                     <img src={event.image} alt={event.title} />
                     <div className="event-content">
+                        <div>{event.image}</div>
                         <div className="event-title">{event.title}</div>
                         <div className="event-date">📅 {event.date}</div>
                         <div className="event-location">📍 {event.location}</div>
