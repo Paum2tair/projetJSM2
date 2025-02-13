@@ -1,24 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import {Event} from '../scripts/Event';
 
-interface Item {
-  id: number;
-  title: string;
-  description: string;
-  date: string;
-  location: string;
-  category: string;
-  image: string;
-  organizer: string;
-  max_attendees: number;
-  price: number;
-}
+
 
 const Panier: React.FC = () => {
 
-  //Mise en place des Items du Panier
-  const [items, setItems] = useState<Item[]>([]);
+  //Mise en place des Items du Panier 
+  const [items, setItems] = useState<Event[]>([]);
   //Mise en place des erreurs
   const [error, setError] = useState<string | null>(null);
+
+  setResa( {event, nb_places})
 
   
 
