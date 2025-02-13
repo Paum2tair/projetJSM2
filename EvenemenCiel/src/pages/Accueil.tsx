@@ -64,6 +64,7 @@ const Accueil: React.FC = () => {
                         <p className='event-description'>{event.description}</p>
                         <div className="event-price">{event.price.toFixed(2)}<img src="/euro.png"></img></div>
                     </div>
+                    <div className="plusplace hidden"></div>
                 </div>
             ))}
             </div>
