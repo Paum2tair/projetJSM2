@@ -1,7 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Kavoon&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+:root{
+    --couleur_fond: #ADD1E3;
+    --couleur_deg_1:#FFEBD1;
+    --couleur_deg_2:#B0D4E0;
+    --couleur_bdr:#417590;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f5f5f5;
+    font-family: "Cairo", serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--couleur_fond);
 }
 
 .container {
