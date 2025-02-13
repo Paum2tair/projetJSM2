@@ -1,8 +1,50 @@
 html {
-    width: 100%;
+    width: 75%;
 }
 
-.form {
+h1 {
+    margin: 0;
+}
+
+h3 {
+    text-align: center;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.forme {
+    width: 75%;
+    margin: 0 auto;
     background-color: red;
-    place-items:initial ;
+    text-align: center;
+}
+
+.submit_f {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacement entre les éléments */
+    max-width: 500px; /* Largeur max pour un bon affichage */
+    margin: 0 auto; /* Centrer le formulaire */
+}
+
+.submit_f input,
+.submit_f button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.submit_f button {
+    width: 50%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.submit_f button:hover {
+    background-color: #0056b3;
 }
