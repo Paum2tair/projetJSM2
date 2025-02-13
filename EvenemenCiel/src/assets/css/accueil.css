@@ -66,7 +66,7 @@ body {
     color: var(--couleur_text_blanc);
     letter-spacing: 2px;
     text-shadow: var(--couleur_bdr) 2px 1px;
-    top: 25%;
+    top: 5%;
     position: absolute;
 }
 .footer {
@@ -102,6 +102,10 @@ body {
     margin: 1em;
     display: flex;
     position: relative;
+   
+}
+.event-card.hidden{
+    pointer-events: none;
 }
 
 .event-card:hover {

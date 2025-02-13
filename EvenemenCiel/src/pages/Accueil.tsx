@@ -53,7 +53,7 @@ const Accueil: React.FC = () => {
             {events.map(event => (
                 <div 
                     key={event.id} 
-                    className={`event-card ${selectedEventId === event.id ? 'selected' : ''}`} 
+                    className={`event-card hidden ${selectedEventId === event.id ? 'selected' : ''}`} 
                     onClick={() => handleSelectEvent(event.id)}
                 >
                     <img src={`/images/${event.title}.jpg`} alt={event.title} />
