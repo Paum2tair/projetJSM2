@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Form from "../components/Form";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 interface Event {
     id: number;
@@ -52,17 +54,24 @@ const Details: React.FC = () => {
 
     return (
       <>
-        <div className="event-details">
-            <h1>{event.title}</h1>
-            <img src={`/images/${event.title}.jpg`} alt={event.title} />
-            <p>{event.description}</p>
-            <p><strong>Date :</strong> {event.date}</p>
-            <p><strong>Lieu :</strong> {event.location}</p>
-            <p><strong>Organisateur :</strong> {event.organizer}</p>
-            <p><strong>Prix :</strong> 💰 {event.price.toFixed(2)}€</p>
-        </div>
 
-        <Form eventId={event.id} max_places={event.max_attendees} />
+        <div className="principale_container">
+          <Header />
+          <div className="container">
+            <div className="event-details">
+              <h1>{event.title}</h1>
+              <img src={`/images/${event.title}.jpg`} alt={event.title} />
+              <p>{event.description}</p>
+              <p><strong>Date :</strong> {event.date}</p>
+              <p><strong>Lieu :</strong> {event.location}</p>
+              <p><strong>Organisateur :</strong> {event.organizer}</p>
+              <p><strong>Prix :</strong> 💰 {event.price.toFixed(2)}€</p>
+            </div>
+            <Form eventId={event.id} max_places={event.max_attendees} />
+          </div>
+          <Footer />
+        </div>
+        
 
       </>
     );
