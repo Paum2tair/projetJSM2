@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "title": "Observation des Perséides",
     "description": "Admirez l'une des plus belles pluies d'étoiles filantes de l'année.",
     "date": "2025-08-12",
@@ -11,6 +12,7 @@
     "price": 10.00
   },
   {
+    "id": 2,
     "title": "Éclipse totale de Soleil",
     "description": "Vivez un moment unique lors de cette éclipse solaire totale.",
     "date": "2025-09-23",
@@ -22,6 +24,7 @@
     "price": 15.00
   },
   {
+    "id": 3,
     "title": "Meeting Aérien International",
     "description": "Un spectacle impressionnant de voltige et de démonstrations aériennes.",
     "date": "2025-06-10",
@@ -33,6 +36,7 @@
     "price": 25.00
   },
   {
+    "id": 4,
     "title": "Festival de Montgolfières",
     "description": "Admirez des dizaines de montgolfières colorées s'envoler au lever du soleil.",
     "date": "2025-07-20",
@@ -44,6 +48,7 @@
     "price": 5.00
   },
   {
+    "id": 5,
     "title": "Initiation au Parapente",
     "description": "Apprenez à voler en parapente avec des moniteurs expérimentés.",
     "date": "2025-05-15",
@@ -55,6 +60,7 @@
     "price": 80.00
   },
   {
+    "id": 6,
     "title": "Lancement d'une Fusée Amateur",
     "description": "Assistez au décollage d'une fusée construite par des passionnés.",
     "date": "2025-04-22",
@@ -66,6 +72,7 @@
     "price": 12.00
   },
   {
+    "id": 7,
     "title": "Nuit des Étoiles",
     "description": "Soirée d'observation des constellations et des planètes avec des astronomes.",
     "date": "2025-08-03",
@@ -77,6 +84,7 @@
     "price": 0.00
   },
   {
+    "id": 8,
     "title": "Expérience de Chute Libre",
     "description": "Vivez l'adrénaline d'un saut en parachute en toute sécurité.",
     "date": "2025-06-25",
@@ -88,6 +96,7 @@
     "price": 250.00
   },
   {
+    "id": 9,
     "title": "Conférence sur l'Exploration Spatiale",
     "description": "Rencontrez des experts et découvrez les futures missions spatiales.",
     "date": "2025-11-10",
@@ -99,6 +108,7 @@
     "price": 20.00
   },
   {
+    "id": 10,
     "title": "Balade en Montgolfière au lever du soleil",
     "description": "Survolez la campagne française en montgolfière.",
     "date": "2025-07-30",
@@ -110,6 +120,7 @@
     "price": 150.00
   },
   {
+    "id": 11,
     "title": "Pluie de Géminides",
     "description": "Observation guidée de l'une des pluies de météores les plus intenses.",
     "date": "2025-12-14",
@@ -121,6 +132,7 @@
     "price": 5.00
   },
   {
+    "id": 12,
     "title": "Vol en ULM",
     "description": "Découvrez le ciel en ultra-léger motorisé.",
     "date": "2025-05-30",
@@ -132,6 +144,7 @@
     "price": 90.00
   },
   {
+    "id": 13,
     "title": "Atelier de construction de cerfs-volants",
     "description": "Fabriquez et testez votre propre cerf-volant.",
     "date": "2025-04-12",
