@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { Resa } from "../scripts/Resa";
+import { Event } from "../scripts/Event";
+
 interface FormProps {
   eventId: number;
   max_places: number;
+  evente: Event;
 }
 
-const Form: React.FC<FormProps> = ({ eventId, max_places }) => {
+const Form: React.FC<FormProps> = ({ eventId, max_places, evente }) => {
   const navigate = useNavigate();
   const localStorageKey = `places_remaining_${eventId}`;
+  const localStorageItem = `panierItem`;
 
   const [placesRemaining, setPlacesRemaining] = useState<number>(max_places);
+  const [resa, setResa] = useState<Resa>();
 
   // Chargement du nombre de places restantes depuis localStorage
   useEffect(() => {
@@ -33,8 +39,24 @@ const Form: React.FC<FormProps> = ({ eventId, max_places }) => {
     }
 
     const newRemaining = placesRemaining - placesRequested;
+
+    let reservation: Resa = {
+      id: eventId,
+      title: evente.title,
+      description: evente.description,
+      date: evente.date,
+      location: evente.location,
+      category: evente.category,
+      image: evente.image,
+      organizer: evente.organizer,
+      max_attendees: evente.max_attendees,
+      price: evente.price,
+      nb_ticket: placesRequested,  // Initialisation de nb_ticket
+  };
+
     setPlacesRemaining(newRemaining);
     localStorage.setItem(localStorageKey, newRemaining.toString());
+    localStorage.setItem(localStorageItem, JSON.stringify(reservation));
 
     // Afficher un pop-up "Merci !" puis rediriger vers la page d'accueil
     alert("Merci pour votre réservation !");

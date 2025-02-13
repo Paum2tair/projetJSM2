@@ -6,19 +6,7 @@ import { useParams } from 'react-router-dom';
 import Form from "../components/Form";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
-interface Event {
-    id: number;
-    title: string;
-    description: string;
-    date: string;
-    location: string;
-    category: string;
-    image: string;
-    organizer: string;
-    max_attendees: number;
-    price: number;
-}
+import { Event } from "../scripts/Event";
 
 const Details: React.FC = () => {
     const { id } = useParams<{ id: string }>(); // Récupérer l'id de l'URL
@@ -67,7 +55,7 @@ const Details: React.FC = () => {
               <p><strong>Organisateur :</strong> {event.organizer}</p>
               <p><strong>Prix :</strong> 💰 {event.price.toFixed(2)}€</p>
             </div>
-            <Form eventId={event.id} max_places={event.max_attendees} />
+            <Form eventId={event.id} max_places={event.max_attendees} evente={event}/>
           </div>
           <Footer />
         </div>
