@@ -1,3 +1,8 @@
 body {
     color: black;
+    width: 100%;
+}
+
+.event-details {
+    width: 75%;
 }
