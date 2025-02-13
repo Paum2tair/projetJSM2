@@ -62,7 +62,8 @@ const Details: React.FC = () => {
             <p><strong>Prix :</strong> 💰 {event.price.toFixed(2)}€</p>
         </div>
 
-        <Form />
+        <Form eventId={event.id} max_places={event.max_attendees} />
+
       </>
     );
 };
