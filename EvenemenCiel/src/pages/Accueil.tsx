@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-
 import "../assets/css/accueil.css";
+import { useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 interface Event {
+    id: number;
     title: string;
     description: string;
     date: string;
@@ -15,8 +18,10 @@ interface Event {
 }
 
 const Accueil: React.FC = () => {
+    const nav = useNavigate();
     const [events, setEvents] = useState<Event[]>([]);
     const [error, setError] = useState<string | null>(null);
+    const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
 
     useEffect(() => {
         fetch('/events.json')
@@ -30,11 +35,27 @@ const Accueil: React.FC = () => {
             .catch(error => setError(error.message));
     }, []);
 
+    // Fonction pour sélectionner un événement
+    const handleSelectEvent = (id: number) => {
+        setSelectedEventId(id);
+        console.log(`Événement sélectionné : ${id}`);
+        nav(`/details/${id}`);
+    };
+
     return (
+        <div className="principale_container">
+        <Header />
+
+         
         <div className="container">
+            <div className="lescarte">
             {error && <p className="error">{error}</p>}
-            {events.map((event, index) => (
-                <div key={index} className="event-card">
+            {events.map(event => (
+                <div 
+                    key={event.id} 
+                    className={`event-card ${selectedEventId === event.id ? 'selected' : ''}`} 
+                    onClick={() => handleSelectEvent(event.id)}
+                >
                     <img src={event.image} alt={event.title} />
                     <div className="event-content">
                         <div>{event.image}</div>
@@ -46,8 +67,12 @@ const Accueil: React.FC = () => {
                     </div>
                 </div>
             ))}
+            </div>
+        </div>
+        < Footer />
         </div>
     );
+
 };
 
 export default Accueil;

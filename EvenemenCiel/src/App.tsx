@@ -13,8 +13,8 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<> <Accueil/><Footer/> </>} />
-          <Route path="/details" element={<> <Details/> </>} />
+          <Route path="/" element={<> <Accueil/> </>} />
+          <Route path="/details/:id" element={<> <Details/> </>} />
           <Route path="/panier" element={<> <Panier/> </>} />
         </Routes>
       </Router>
