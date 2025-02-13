@@ -37,7 +37,7 @@ const Accueil: React.FC = () => {
     const handleSelectEvent = (id: number) => {
         setSelectedEventId(id);
         console.log(`Événement sélectionné : ${id}`);
-        nav("/details/{selectedEventId}");
+        nav(`/details/${id}`);
     };
 
     return (
