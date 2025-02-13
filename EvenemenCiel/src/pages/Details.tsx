@@ -54,7 +54,7 @@ const Details: React.FC = () => {
       <>
         <div className="event-details">
             <h1>{event.title}</h1>
-            <img src={event.image} alt={event.title} />
+            <img src={`/images/${event.title}.jpg`} alt={event.title} />
             <p>{event.description}</p>
             <p><strong>Date :</strong> {event.date}</p>
             <p><strong>Lieu :</strong> {event.location}</p>
