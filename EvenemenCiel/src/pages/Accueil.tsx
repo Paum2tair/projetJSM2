@@ -60,9 +60,9 @@ const Accueil: React.FC = () => {
                     <div className="event-content">
                         <div className="event-title">{event.title}</div>
                         <div className="event-date">📅 {event.date}</div>
-                        <div className="event-location">📍 {event.location}</div>
-                        <p>{event.description}</p>
-                        <div className="event-price">💰 {event.price.toFixed(2)}€</div>
+                        <div className="event-location"><img src="/epingle-de-la-carte.png"></img> {event.location}</div>
+                        <p className='event-description'>{event.description}</p>
+                        <div className="event-price">{event.price.toFixed(2)}<img src="/euro.png"></img></div>
                     </div>
                 </div>
             ))}

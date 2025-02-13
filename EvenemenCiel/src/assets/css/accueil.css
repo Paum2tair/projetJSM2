@@ -4,6 +4,7 @@
     --couleur_deg_1:#FFEBD1;
     --couleur_deg_2:#B0D4E0;
     --couleur_bdr:#417590;
+    --couleur_bdr2:#0f232e;
     --couleur_text_blanc: white;
     
 }
@@ -64,6 +65,8 @@ body {
     color: var(--couleur_text_blanc);
     letter-spacing: 2px;
     text-shadow: var(--couleur_bdr) 2px 1px;
+    top: 25%;
+    position: absolute;
 }
 .footer {
     background-image: url('/footer2.png'); /* Remplace par ton image */
@@ -110,6 +113,7 @@ body {
 
 .event-content {
     padding: 0.5em;
+    position: relative;
 }
 
 .event-title {
@@ -122,15 +126,32 @@ body {
 .event-date, .event-location {
     color: var(--couleur_bdr);
     font-size: 0.8em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.event-location img{
+    width: 2em;
+
+}
+.event-price img{
+    width: 2em;
+}
+.event-description{
+    font-size: 0.8em;
+}
+.event-price {
+    position: absolute;
+    font-size: 2em;
+    font-weight: bold;
+    bottom: 1em;
+    right: 1em;
+    display: flex;
+    color: var(--couleur_bdr);
+    text-shadow:var(--couleur_bdr2) 1px 1px 1px ;
+
 }
 /*
-.event-price {
-    margin-top: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #27ae60;
-}
-
 .error {
     color: red;
     font-size: 16px;
