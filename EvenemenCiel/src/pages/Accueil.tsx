@@ -19,7 +19,11 @@ const Accueil: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
     const [dateFilter, setDateFilter] = useState<"past" | "future" | undefined>();
     const [priceOrder, setPriceOrder] = useState<"asc" | "desc" | undefined>();
-
+    const resetFilters = () => {
+        setSelectedCategory(undefined);
+        setDateFilter(undefined);
+        setPriceOrder(undefined);
+    };
     useEffect(() => {
         fetch("/events.json")
             .then(response => {
@@ -72,8 +76,11 @@ const Accueil: React.FC = () => {
             <Etoiles />
 
             {/* Filtres dynamiques */}
+    
+
+            <div className="container">
             <div className="filters">
-                <select onChange={(e) => setSelectedCategory(e.target.value || undefined)}>
+                <select value={selectedCategory || ''} onChange={(e) => setSelectedCategory(e.target.value || undefined)}>
                     <option value="">Toutes les catégories</option>
                     {categories.map(category => (
                         <option key={category} value={category}>
@@ -82,20 +89,19 @@ const Accueil: React.FC = () => {
                     ))}
                 </select>
 
-                <select onChange={(e) => setDateFilter(e.target.value as "past" | "future" || undefined)}>
+                <select value={dateFilter || ''} onChange={(e) => setDateFilter(e.target.value as "past" | "future" || undefined)}>
                     <option value="">Toutes les dates</option>
                     <option value="past">Événements passés</option>
                     <option value="future">Événements futurs</option>
                 </select>
 
-                <select onChange={(e) => setPriceOrder(e.target.value as "asc" | "desc" || undefined)}>
+                <select value={priceOrder || ''} onChange={(e) => setPriceOrder(e.target.value as "asc" | "desc" || undefined)}>
                     <option value="">Sans tri</option>
                     <option value="asc">Prix croissant</option>
                     <option value="desc">Prix décroissant</option>
                 </select>
+                <button onClick={resetFilters}>Réinitialiser les filtres</button>
             </div>
-
-            <div className="container">
                 <div className="lescarte">
                     {error && <p className="error">{error}</p>}
                     {filteredEvents.map(event => (
