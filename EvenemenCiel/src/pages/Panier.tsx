@@ -27,6 +27,7 @@ const Panier: React.FC = () => {
     //-----------------------Récupération des Items du Panier-----------------------
     const storedItems = localStorage.getItem('panierItems');
     if (storedItems) {
+      setItems(JSON.parse(storedItems));
       console.log('Panier récupéré depuis le localStorage :' , JSON.parse(storedItems));
     }
 
