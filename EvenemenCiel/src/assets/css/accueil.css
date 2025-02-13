@@ -202,7 +202,6 @@ body {
     text-align: center;
     margin-top: 20px;
 } */
-
 .stars-container {
     position: fixed;
     top: 0;
@@ -213,21 +212,25 @@ body {
     z-index: -1; /* Derrière tout le contenu */
 }
 
+@keyframes twinkle {
+    0% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+}
+
 .star {
     position: absolute;
     background-color: white;
     border-radius: 50%;
     box-shadow: 0 0 5px white;
-    animation: twinkle 2s infinite alternate;
-}
-
-@keyframes twinkle {
-    from {
-        opacity: 0.3;
-        transform: scale(1);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1.2);
-    }
+    animation: twinkle linear infinite alternate;
 }
