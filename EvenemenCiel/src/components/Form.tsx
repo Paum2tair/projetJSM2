@@ -13,7 +13,7 @@ interface FormProps {
 const Form: React.FC<FormProps> = ({ eventId, max_places, evente }) => {
   const navigate = useNavigate();
   const localStorageKey = `places_remaining_${eventId}`;
-  const localStorageItem = `panierItem`;
+  const localStorageItem = `panierItems`;
 
   const [placesRemaining, setPlacesRemaining] = useState<number>(max_places);
   const [resa, setResa] = useState<Resa>();
@@ -52,11 +52,39 @@ const Form: React.FC<FormProps> = ({ eventId, max_places, evente }) => {
       max_attendees: evente.max_attendees,
       price: evente.price,
       nb_ticket: placesRequested,  // Initialisation de nb_ticket
-  };
+    };
 
     setPlacesRemaining(newRemaining);
     localStorage.setItem(localStorageKey, newRemaining.toString());
-    localStorage.setItem(localStorageItem, JSON.stringify(reservation));
+
+    // Récupération des réservations existantes
+    const resas = localStorage.getItem(localStorageItem);
+
+    // Vérifiez si resas est une chaîne valide avant d'appeler JSON.parse
+    let resasArray: Resa[] = [];
+    if (resas) {
+      try {
+        resasArray = JSON.parse(resas);
+      } catch (e) {
+        console.error("Erreur lors du parsing du JSON:", e);
+      }
+    }
+
+    // Récupérations des réservations dont l'id vaut celle de event
+    const resasEvent = resasArray.filter((resa: Resa) => resa.id === eventId);
+
+    // Si une réservation existe déjà pour cet event
+    if (resasEvent.length > 0) {
+      // On ajoute les places demandées à la réservation existante
+      reservation = resasEvent[0];
+      reservation.nb_ticket += placesRequested;
+    }
+
+    // Dans resas, on retire l'ancienne réservation et on ajoute celle-ci
+    const newResas = resasArray.filter((resa: Resa) => resa.id !== eventId);
+    newResas.push(reservation);
+
+    localStorage.setItem(localStorageItem, JSON.stringify(newResas));
 
     // Afficher un pop-up "Merci !" puis rediriger vers la page d'accueil
     alert("Merci pour votre réservation !");
