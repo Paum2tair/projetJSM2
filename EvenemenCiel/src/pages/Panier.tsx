@@ -10,6 +10,8 @@ const Panier: React.FC = () => {
   //Mise en place des erreurs
   const [error, setError] = useState<string | null>(null);
 
+  setResa( {event, nb_places})
+
   
 
   useEffect(() => {
