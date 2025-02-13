@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import "../assets/css/accueil.css";
 import { useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 interface Event {
     id: number;
@@ -41,7 +43,12 @@ const Accueil: React.FC = () => {
     };
 
     return (
+        <div className="principale_container">
+        <Header />
+
+         
         <div className="container">
+            <div className="lescarte">
             {error && <p className="error">{error}</p>}
             {events.map(event => (
                 <div 
@@ -60,8 +67,12 @@ const Accueil: React.FC = () => {
                     </div>
                 </div>
             ))}
+            </div>
+        </div>
+        < Footer />
         </div>
     );
+
 };
 
 export default Accueil;
