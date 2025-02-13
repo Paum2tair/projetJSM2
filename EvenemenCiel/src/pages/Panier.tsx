@@ -6,20 +6,13 @@ import {Event} from '../scripts/Event';
 const Panier: React.FC = () => {
 
   //Mise en place des Items du Panier 
-  const [items, setItems] = useState<Resa[]>([]);
+  const [items, setItems] = useState<Event[]>([]);
   //Mise en place des erreurs
   const [error, setError] = useState<string | null>(null);
 
   
 
   useEffect(() => {
-
-    //-----------------------Récupération des Items du Panier-----------------------
-    const storedItems = localStorage.getItem('panierItems');
-    if (storedItems) {
-      setItems(JSON.parse(storedItems));
-      console.log('Panier récupéré depuis le localStorage :' , JSON.parse(storedItems));
-    }
 
     //-----------------------Récupération des Items du Panier-----------------------
     const storedItems = localStorage.getItem('panierItems');
