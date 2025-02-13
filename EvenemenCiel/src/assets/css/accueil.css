@@ -7,7 +7,7 @@
     --couleur_bdr2:#0f232e;
     --couleur_hidden:#0f232e89;
     --couleur_text_blanc: white;
-    
+
 }
 #root{
     min-height: 100vh;
@@ -48,15 +48,27 @@ body {
     text-align: center;
     position: relative;
 }
+.header .circle:before {
+    content:"";
+    width: 20px;
+    background-color: var(--couleur_text_blanc);
+    height: 10px;
+    position: absolute;
+    left: 30px;
+    top: 0.5em;
+    border-radius: 50%;
+    transform: rotate(-25deg);
+}
 .header{
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    padding-top: 1em;
 }
 .panier-container{
     position: absolute;
-    right:0em;
+    right:1em;
 }
 .header img{
     width: 100px;
@@ -75,6 +87,23 @@ body {
     background-size: auto 100%; /* Ajuste la hauteur à 100% du conteneur */
     height: 7em;
     width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.footer p{
+    color: var(--couleur_deg_1);
+    font-family: "Kavoon", serif;
+    text-shadow:
+    -2px -2px 0 var(--couleur_bdr),
+     2px -2px 0 var(--couleur_bdr),
+    -2px  2px 0 var(--couleur_bdr),
+     2px  2px 0 var(--couleur_bdr),
+    -3px  0px 0 var(--couleur_bdr),
+     3px  0px 0 var(--couleur_bdr),
+     0px -3px 0 var(--couleur_bdr),
+     0px  3px 0 var(--couleur_bdr);
 }
  .container {
     display: flex;
@@ -102,7 +131,7 @@ body {
     margin: 1em;
     display: flex;
     position: relative;
-   
+
 }
 .event-card.hidden{
     pointer-events: none;
@@ -141,7 +170,8 @@ body {
 
 }
 .event-price img{
-    width: 2em;
+    width: auto;
+    height: 1em;
 }
 .event-description{
     font-size: 0.8em;
@@ -149,11 +179,13 @@ body {
 .event-price {
     position: absolute;
     font-weight: bold;
-    bottom: 1em;
+    bottom: 0.5em;
     right: 1em;
     display: flex;
     color: var(--couleur_bdr);
     text-shadow:var(--couleur_bdr2) 1px 1px 1px ;
+    font-size: 1.3em;
+    align-items: center;
 
 }
 
@@ -170,3 +202,32 @@ body {
     text-align: center;
     margin-top: 20px;
 } */
+
+.stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Empêche d'interagir avec les étoiles */
+    z-index: -1; /* Derrière tout le contenu */
+}
+
+.star {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 0 5px white;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
