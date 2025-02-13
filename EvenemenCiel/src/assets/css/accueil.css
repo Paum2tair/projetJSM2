@@ -109,6 +109,7 @@ body {
     display: flex;
     align-items: center;
     width: 100%;
+    flex-direction: column;
 }
 .container .lescarte{
     display: flex;
@@ -234,3 +235,19 @@ body {
     box-shadow: 0 0 5px white;
     animation: twinkle linear infinite alternate;
 }
+.container .filters {
+    margin-top: 1em;
+
+}
+.container .filters select ,.container .filters button {
+    padding:0.2em;
+    border-radius: 10px;
+    margin-left: 1em;
+    background: linear-gradient(to bottom, var(--couleur_deg_1), var(--couleur_deg_2));
+    border: var(--couleur_text_blanc) 2px solid;
+    box-shadow: var(--couleur_bdr) 2px 2px 5px;
+}
+.container .filters select option {
+    background: var(--couleur_deg_1);
+}
+
