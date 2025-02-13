@@ -56,7 +56,7 @@ const Accueil: React.FC = () => {
                     className={`event-card ${selectedEventId === event.id ? 'selected' : ''}`} 
                     onClick={() => handleSelectEvent(event.id)}
                 >
-                    <img src={event.image} alt={event.title} />
+                    <img src={`/images/${event.title}.jpg`} alt={event.title} />
                     <div className="event-content">
                         <div className="event-title">{event.title}</div>
                         <div className="event-date">📅 {event.date}</div>
