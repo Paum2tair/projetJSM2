@@ -3,6 +3,8 @@ import "../assets/css/details.css"
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import Form from "../components/Form";
+
 interface Event {
     id: number;
     title: string;
@@ -49,6 +51,7 @@ const Details: React.FC = () => {
     }
 
     return (
+      <>
         <div className="event-details">
             <h1>{event.title}</h1>
             <img src={event.image} alt={event.title} />
@@ -58,6 +61,9 @@ const Details: React.FC = () => {
             <p><strong>Organisateur :</strong> {event.organizer}</p>
             <p><strong>Prix :</strong> 💰 {event.price.toFixed(2)}€</p>
         </div>
+
+        <Form />
+      </>
     );
 };
 
