@@ -79,7 +79,8 @@ const Panier: React.FC = () => {
               {items.map(item => (
                 <li key={item.id} className="cart-item">
                   <div className="titre_text">
-                    <h3>{item.title}</h3>
+                   
+                    <img className='image_title' src={`/images/${item.title}.jpg`} alt={item.title} ></img> <h3>{item.title}</h3>
                   </div>
                   <div className="item-details">
                     <div className="item-info">

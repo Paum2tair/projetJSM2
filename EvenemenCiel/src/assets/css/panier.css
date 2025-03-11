@@ -9,8 +9,20 @@
     border: 3px solid var(--couleur_bdr);
     box-shadow:3px 3px 5px var(--couleur_bdr);
     background: linear-gradient(to bottom, var(--couleur_deg_1), var(--couleur_deg_2));
+    overflow-x: auto;
 }
-
+.panier .image_title{
+    width: 3em;
+    height: 3em;
+    object-fit: cover;
+    overflow: hidden;
+   border-radius: 50%;
+   margin-right: 1em;
+}
+.titre_text{
+    display: flex;
+    align-items: center;
+}
 .panier h2{
     width: 80%;
     text-align: center;
