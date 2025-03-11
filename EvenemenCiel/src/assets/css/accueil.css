@@ -41,13 +41,21 @@ body {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background: linear-gradient(to bottom, var(--couleur_deg_1), var(--couleur_deg_2));
-    border: 3px solid var(--couleur_bdr);
+    /* background: linear-gradient(to bottom, var(--couleur_deg_1), var(--couleur_deg_2)); */
+    /* border: 3px solid var(--couleur_bdr); */
     display: flex;
     justify-content:center;
     text-align: center;
     position: relative;
     cursor: pointer;
+}
+.circle_color_dark {
+    border: 3px solid var(--couleur_fond);
+    background: linear-gradient(to bottom, var(--couleur_bdr), var(--couleur_deg_2));
+}
+.circle_color_light {
+    border: 3px solid var(--couleur_bdr);
+    background: linear-gradient(to bottom, var(--couleur_deg_1), var(--couleur_deg_2));
 }
 .header .circle:before {
     content:"";
@@ -74,6 +82,23 @@ body {
 .panier-container:hover img{
     transform: scale(1.05);
 }
+.them-container {
+    position: absolute;
+    left:1em; 
+    cursor: pointer;
+}
+.them-container img {
+    width: 50px !important;
+}
+.them-container:hover img{
+    transform: scale(1.05);
+}
+.dark-theme {
+    background-color: var(--couleur_bdr);
+}
+.light-theme {
+    background-color: var(--couleur_fond);
+}
 .header img{
     width: 100px;
     transition: ease-in-out 0.2s;
@@ -97,7 +122,7 @@ body {
     align-items: flex-end;
     justify-content: center;
 }
-.footer p{
+.footer_light{
     color: var(--couleur_deg_1);
     font-family: "Kavoon", serif;
     text-shadow:
@@ -109,6 +134,19 @@ body {
      3px  0px 0 var(--couleur_bdr),
      0px -3px 0 var(--couleur_bdr),
      0px  3px 0 var(--couleur_bdr);
+}
+.footer_dark {
+    color: var(--couleur_bdr);
+    font-family: "Kavoon", serif;
+    text-shadow:
+    -2px -2px 0 var(--couleur_deg_1),
+     2px -2px 0 var(--couleur_deg_1),
+    -2px  2px 0 var(--couleur_deg_1),
+     2px  2px 0 var(--couleur_deg_1),
+    -3px  0px 0 var(--couleur_deg_1),
+     3px  0px 0 var(--couleur_deg_1),
+     0px -3px 0 var(--couleur_deg_1),
+     0px  3px 0 var(--couleur_deg_1);
 }
  .container {
     display: flex;
