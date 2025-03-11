@@ -11,11 +11,13 @@ const Header = () => {
   };
   
   const themeChange = () => {
-    const newTheme = isDark ? "light" : "dark";
+    // const newTheme = isDark ? "light" : "dark";
+    // document.body.classList.toggle("dark-theme");
+    // localStorage.setItem("theme", newTheme);
+    // window.dispatchEvent(new Event("themeChanged"));
     setIsDark(!isDark);
-    document.body.classList.toggle("dark-theme");
-    localStorage.setItem("theme", newTheme);
-    window.dispatchEvent(new Event("themeChanged"));
+    document.documentElement.style.setProperty("--couleur_fond", "#417590"); // Fond sombre
+    document.documentElement.style.setProperty("--couleur_bdr", "#ADD1E3"); // Fond sombre
   };
 
   useEffect(() => {

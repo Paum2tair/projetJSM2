@@ -175,7 +175,12 @@ body {
     margin: 1em;
     display: flex;
     position: relative;
-
+}
+.event_card_dark {
+    box-shadow:3px 3px 5px var(--couleur_fond);
+}
+.event_card_light {
+    box-shadow:3px 3px 5px var(--couleur_bdr);
 }
 .event-card.hidden{
     pointer-events: none;
