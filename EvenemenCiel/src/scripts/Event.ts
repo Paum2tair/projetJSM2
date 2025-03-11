@@ -8,5 +8,6 @@ export interface Event {
     image: string;
     organizer: string;
     max_attendees: number;
+    nb_ticket: number;
     price: number;
 }
