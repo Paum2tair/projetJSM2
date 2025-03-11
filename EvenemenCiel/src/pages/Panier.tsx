@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Event} from '../scripts/Event';
 import Header from '../components/Header';
-import { Form } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 
 
@@ -12,6 +12,8 @@ const Panier: React.FC = () => {
   const [items, setItems] = useState<Event[]>([]);
   //Mise en place des erreurs
   const [error, setError] = useState<string | null>(null);
+  //Mise en place de la navigation
+  const nav = useNavigate();
   
   
   useEffect(() => {
@@ -66,17 +68,20 @@ const Panier: React.FC = () => {
   };
   
   const removeItemFromPanier = (id: number) => {
-
     //Suppression de l'item dans le panier
     const newItems = items.filter(item => item.id !== id);
     setItems(newItems);
     localStorage.setItem('panierItems', JSON.stringify(newItems));
-
     //Suppression de la quantité de l'item dans le panier
     const quantityItem = "places_remaining_" + id;
     localStorage.removeItem(quantityItem);
   };
 
+
+  const modifyItemFromPanier = (id: number) => {
+    //Suppression de l'item dans le panier
+    const newItems = items.filter(item => item.id !== id);
+  };
   return (
     <div className="principale_container">
       <Header />
@@ -88,13 +93,10 @@ const Panier: React.FC = () => {
               <li>
                 {item.title} - {item.price}€
                 <button onClick={() => removeItemFromPanier(item.id)}>Supprimer</button>
+                <button onClick={() => nav(`/details/${item.id}`) }>Modifier</button>
               </li>
             ))}
           </ul>
-          <button onClick={() => {addItemToPanier1(); console.log("On ajoute 1")} }>Ajouter Article 1</button>
-          <button onClick={() => {addItemToPanier2(); console.log("On ajoute 2")} }>Ajouter Article 2</button>
-          <button onClick={() => {removeItemFromPanier(1); console.log("On efface 1")} }>Effacer tout 1</button>
-          <button onClick={() => {removeItemFromPanier(2); console.log("On efface 2")} }>Effacer tout 2 </button>
         </div>
       </div>
       <Footer />
