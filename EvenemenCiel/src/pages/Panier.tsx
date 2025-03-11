@@ -52,13 +52,13 @@ const Panier: React.FC = () => {
                 <input 
                   type="number"
                   value={item.nb_ticket}
-                  min="0"
+                  min="1"
                   max={item.max_attendees}
                   onChange={(e) => {
                     //Cas où la quantité est nulle
                     if (parseInt(e.target.value) <= 0) {
-                      removeItemFromPanier(item.id);
-                      return;
+                      alert("Nombre minimal: 1 !");
+                      e.target.value = "1";
                     }
                     //Cas où la quantité est supérieure à la quantité maximale
                     if (parseInt(e.target.value) > item.max_attendees) {
