@@ -47,8 +47,8 @@ const Panier: React.FC = () => {
           <ul>
             {items.map(item => (
               <li>
-                {item.title} le {item.date} - {item.price * item.nb_ticket}€  ({item.nb_ticket} places)
                 <button onClick={() => removeItemFromPanier(item.id)}>Supprimer</button>
+                {item.nb_ticket} x {item.title} le {item.date} - {item.price * item.nb_ticket}€
                 <input 
                   type="number"
                   value={item.nb_ticket}
