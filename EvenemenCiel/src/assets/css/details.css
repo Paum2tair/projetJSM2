@@ -82,6 +82,16 @@
     border: var(--couleur_text_blanc) 2px solid;
     box-shadow: var(--couleur_bdr) 2px 2px 5px;
 }
+
+.form .element input.number{
+  padding:0.1em;
+  border-radius: 0.5em;
+  margin-left: 0.5em;
+ width: 40%;
+  background: var(--couleur_text_blanc);
+  border: var(--couleur_text_blanc) 2px solid;
+  box-shadow: var(--couleur_bdr) 2px 2px 5px;
+}
 .form form{
     position: relative;
     display: flex;

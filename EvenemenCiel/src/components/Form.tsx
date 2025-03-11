@@ -15,7 +15,7 @@ const Form: React.FC<FormProps> = ({ eventId, max_places, evente }) => {
   const localStorageKey = `places_remaining_${eventId}`;
   const localStorageItem = `panierItems`;
   const [placesRemaining, setPlacesRemaining] = useState<number>(max_places);
-  const [nbPlaces, setNbPlaces] = useState<number>(1);
+  // const [nbPlaces, setNbPlaces] = useState<number>(1);
 
   // Chargement du nombre de places restantes et des tickets deja achetes depuis localStorage
   useEffect(() => {
@@ -23,7 +23,7 @@ const Form: React.FC<FormProps> = ({ eventId, max_places, evente }) => {
     if (local_remaining !== null) {
       const remaining = parseInt(local_remaining, 10);
       setPlacesRemaining(remaining);
-      setNbPlaces(max_places - remaining);
+      // setNbPlaces(max_places - remaining);
     }
   }, [localStorageKey]);
 
@@ -107,11 +107,12 @@ const Form: React.FC<FormProps> = ({ eventId, max_places, evente }) => {
         </div>
         <div className="element">  <label htmlFor="places">Nombre de places :</label>
           <input
+          className="number"
             type="number"
             id="places"
             name="places"
             placeholder="1"
-            onChange={(e) => setNbPlaces(Number(e.target.value))}
+            //onChange={(e) => setNbPlaces(Number(e.target.value))}
             // value={nbPlaces}
             min="1"
             max={placesRemaining}
