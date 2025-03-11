@@ -1,0 +1,138 @@
+.panier {
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 1em;
+    margin-top: 1em;
+    align-items: center;
+    border: 3px solid var(--couleur_bdr);
+    box-shadow:3px 3px 5px var(--couleur_bdr);
+    background: linear-gradient(to bottom, var(--couleur_deg_1), var(--couleur_deg_2));
+}
+
+.panier h2{
+    width: 80%;
+    text-align: center;
+    color:var(--couleur_bdr);
+    border-bottom: 3px solid var(--couleur_bdr);
+}
+.item-subtotal{
+    font-size: 0.7em;
+}
+.panier .cart-items{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+width: 100%;
+padding: 0;
+margin: 0;
+
+}
+.panier .item-info p{
+    margin: 0;
+    
+}
+
+.panier .cart-items .cart-item .item-details{
+    padding: 0.5em 1em;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.cart-item .item-details svg{
+    width: 1em;
+}
+.panier .quantity-help-text{
+    font-size: 0.7em;
+}
+.input-icon {
+
+    color: var(--couleur_bdr);
+  }
+  .quantity-input::-webkit-outer-spin-button,
+  .quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+
+  /* Modification du conteneur principal des détails */
+.panier .cart-items .cart-item .item-details {
+    padding: 0.5em 1em;
+    display: flex;
+    justify-content: space-between; /* Pour espacer les éléments équitablement */
+    align-items: flex-start; /* Pour aligner les éléments en haut */
+    width: 100%; /* Pour que le conteneur prenne toute la largeur disponible */
+  }
+
+  .item-info {
+    flex: 1; 
+    margin-right: 0.5em;
+  }
+
+  .quantity-control {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* Style pour le bouton de suppression */
+  .remove-button {
+    align-self: flex-start;
+    height: fit-content;
+    margin-left: 0.5em;
+  }
+
+
+/***********************************/
+
+.remove-button {
+    background: rgb(113, 23, 23);
+    color: var(--couleur_text_blanc);
+    border: none;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .remove-button:hover{
+    background: rgb(167, 36, 36);
+
+  }
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .continue-shopping, .checkout-button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .continue-shopping {
+    background-color: #f8fafc;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+  }
+  
+  .continue-shopping:hover {
+    background-color: #f1f5f9;
+  }
+  
+  .checkout-button {
+    background-color: #22c55e;
+    color: white;
+  }
+  
+  .checkout-button:hover {
+    background-color: #16a34a;
+  }
