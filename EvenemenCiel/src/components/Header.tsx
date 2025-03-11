@@ -11,13 +11,20 @@ const Header = () => {
   };
   
   const themeChange = () => {
-    // const newTheme = isDark ? "light" : "dark";
-    // document.body.classList.toggle("dark-theme");
-    // localStorage.setItem("theme", newTheme);
-    // window.dispatchEvent(new Event("themeChanged"));
     setIsDark(!isDark);
-    document.documentElement.style.setProperty("--couleur_fond", "#417590"); // Fond sombre
-    document.documentElement.style.setProperty("--couleur_bdr", "#ADD1E3"); // Fond sombre
+    if(isDark){
+      document.documentElement.style.setProperty("--couleur_fond", "#417590");
+      document.documentElement.style.setProperty("--footer_contour","#417590");
+      document.documentElement.style.setProperty("--footer_interieur","#ffffff");
+      document.documentElement.style.setProperty("--couleur_bdr", "#ADD1E3");
+    }else{
+      document.documentElement.style.setProperty("--couleur_fond", "#ADD1E3");
+      document.documentElement.style.setProperty("--footer_contour","#ffffff");
+      document.documentElement.style.setProperty("--footer_interieur","#417590");
+      document.documentElement.style.setProperty("--couleur_bdr", "#417590");
+    }
+ 
+    console.log("change",document.documentElement.style.getPropertyValue("--couleur_bdr"));
   };
 
   useEffect(() => {
