@@ -47,6 +47,7 @@ body {
     justify-content:center;
     text-align: center;
     position: relative;
+    cursor: pointer;
 }
 .header .circle:before {
     content:"";
