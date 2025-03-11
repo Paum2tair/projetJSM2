@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {Event} from '../scripts/Event';
+import Header from '../components/Header';
+import { Form } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 
 
@@ -22,7 +25,7 @@ const Panier: React.FC = () => {
 
   }, []);
 
-      //-----------------------A retirer-----------------------
+    //-----------------------A retirer-----------------------
 
   
   const addItemToPanier1 = () => {
@@ -63,27 +66,38 @@ const Panier: React.FC = () => {
   };
   
   const removeItemFromPanier = (id: number) => {
+
+    //Suppression de l'item dans le panier
     const newItems = items.filter(item => item.id !== id);
     setItems(newItems);
     localStorage.setItem('panierItems', JSON.stringify(newItems));
+
+    //Suppression de la quantité de l'item dans le panier
+    const quantityItem = "places_remaining_" + id;
+    localStorage.removeItem(quantityItem);
   };
 
   return (
-    <div className='panier'>
-      <h1>Panier</h1>
-      <ul>
-        {items.map(item => (
-          <li>
-            {item.title} - {item.price}€
-            <button onClick={() => removeItemFromPanier(item.id)}>Supprimer</button>
-          </li>
-        ))}
-      </ul>
-      <button onClick={() => {addItemToPanier1(); console.log("On ajoute 1")} }>Ajouter Article 1</button>
-      <button onClick={() => {addItemToPanier2(); console.log("On ajoute 2")} }>Ajouter Article 2</button>
-      <button onClick={() => {removeItemFromPanier(1); console.log("On efface 1")} }>Effacer tout 1</button>
-      <button onClick={() => {removeItemFromPanier(2); console.log("On efface 2")} }>Effacer tout 2 </button>
-
+    <div className="principale_container">
+      <Header />
+      <div className="container">
+        <div className='panier'>
+          <h1>Panier</h1>
+          <ul>
+            {items.map(item => (
+              <li>
+                {item.title} - {item.price}€
+                <button onClick={() => removeItemFromPanier(item.id)}>Supprimer</button>
+              </li>
+            ))}
+          </ul>
+          <button onClick={() => {addItemToPanier1(); console.log("On ajoute 1")} }>Ajouter Article 1</button>
+          <button onClick={() => {addItemToPanier2(); console.log("On ajoute 2")} }>Ajouter Article 2</button>
+          <button onClick={() => {removeItemFromPanier(1); console.log("On efface 1")} }>Effacer tout 1</button>
+          <button onClick={() => {removeItemFromPanier(2); console.log("On efface 2")} }>Effacer tout 2 </button>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 };
