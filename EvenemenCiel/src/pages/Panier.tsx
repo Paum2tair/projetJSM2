@@ -66,9 +66,15 @@ const Panier: React.FC = () => {
   };
   
   const removeItemFromPanier = (id: number) => {
+
+    //Suppression de l'item dans le panier
     const newItems = items.filter(item => item.id !== id);
     setItems(newItems);
     localStorage.setItem('panierItems', JSON.stringify(newItems));
+
+    //Suppression de la quantité de l'item dans le panier
+    const quantityItem = "places_remaining_" + id;
+    localStorage.removeItem(quantityItem);
   };
 
   return (
