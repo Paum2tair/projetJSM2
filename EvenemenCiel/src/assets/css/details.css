@@ -110,7 +110,44 @@
     background: var(--couleur_text_blanc);
     border: var(--couleur_text_blanc) 2px solid;
     box-shadow: var(--couleur_bdr) 2px 2px 5px;
+    width: 100%;
 
+}
+
+/* Ajoutez ces styles à votre fichier details.css */
+
+.form-container {
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.form-container.open {
+  max-height: 500px; /* Ajustez cette valeur selon la taille de votre formulaire */
+  opacity: 1;
+  margin-top: 20px;
+}
+
+.form-container.closed {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+}
+
+.reservation-button {
+  background-color: var(--couleur_text_blanc);
+  color: var(--couleur_bdr);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 15px;
+  transition: background-color 0.3s;
+}
+
+.reservation-button:hover {
+  background-color: var(--couleur_bdr);
+  color: var(--couleur_text_blanc);
 }
 
 .form button:hover{
