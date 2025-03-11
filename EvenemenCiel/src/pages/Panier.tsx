@@ -49,13 +49,13 @@ const Panier: React.FC = () => {
           <ul>
             {items.map(item => (
               <li>
-                <button onClick={() => removeItemFromPanier(item.id)}>Supprimer</button>
                 {item.nb_ticket} x {item.title} le {item.date} - {item.price * item.nb_ticket}€
                 <input 
                   type="number"
                   value={item.nb_ticket}
                   min="1"
                   max={item.max_attendees}
+                  //Fonction de mise à jour de la valeur
                   onChange={(e) => {
                     //Cas où la quantité est nulle
                     if (parseInt(e.target.value) <= 0) {
@@ -77,6 +77,7 @@ const Panier: React.FC = () => {
                     localStorage.setItem('panierItems', JSON.stringify(newItems));
                   }}
                 ></input>
+                <button onClick={() => removeItemFromPanier(item.id)}>Supprimer</button>
               </li>
             ))}
           </ul>
