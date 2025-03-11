@@ -46,6 +46,7 @@ const Details: React.FC = () => {
       <div className="principale_container">
         <Header />
         <div className="container">
+          
           <div className="event-details">
             <div className="titre_image">
               <img src={`/images/${event.title}.jpg`} alt={event.title} />

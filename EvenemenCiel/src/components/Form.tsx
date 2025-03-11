@@ -93,30 +93,31 @@ const Form: React.FC<FormProps> = ({ eventId, max_places, evente }) => {
   };
 
   return (
+    
     <div className="form">
       <h3>Réservation de l'événement</h3>
       <p>Places restantes : {placesRemaining}</p>
 
       <form onSubmit={handleSubmit} className="submit_f">
-        <label htmlFor="name">Nom :</label>
-        <input type="text" id="name" name="name" placeholder="Nom" required />
+        <div className="element"> <label htmlFor="name">Nom :</label>
+          <input type="text" className="textarea" id="name" name="name" placeholder="Nom" required />
+        </div>
+        <div className="element">  <label htmlFor="email">Email :</label>
+          <input type="email" className="textarea"  id="email" name="email" placeholder="Email" required />
+        </div>
+        <div className="element">  <label htmlFor="places">Nombre de places :</label>
+          <input
+            type="number"
+            id="places"
+            name="places"
+            placeholder="1"
+            onChange={(e) => setNbPlaces(Number(e.target.value))}
+            // value={nbPlaces}
+            min="1"
+            max={placesRemaining}
+            required
+          /> </div>
 
-        <label htmlFor="email">Email :</label>
-        <input type="email" id="email" name="email" placeholder="Email" required />
-
-        <label htmlFor="places">Nombre de places :</label>
-        <input
-          type="number"
-          id="places"
-          name="places"
-          // placeholder={String(nbPlaces)}
-          value={nbPlaces}
-          onChange={(e) => setNbPlaces(Number(e.target.value))}
-          // value={nbPlaces}
-          min="1"
-          max={placesRemaining}
-          required
-        />
 
         <button type="submit">Valider</button>
       </form>
