@@ -23,8 +23,6 @@ const Header = () => {
       document.documentElement.style.setProperty("--footer_interieur","#417590");
       document.documentElement.style.setProperty("--couleur_bdr", "#417590");
     }
- 
-    console.log("change",document.documentElement.style.getPropertyValue("--couleur_bdr"));
   };
 
   useEffect(() => {

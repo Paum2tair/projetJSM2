@@ -51,15 +51,11 @@ body {
     text-align: center;
     position: relative;
     cursor: pointer;
-}
-.circle_color_dark {
-    border: 3px solid var(--couleur_fond);
-    background: linear-gradient(to bottom, var(--couleur_bleu_fonce), var(--couleur_deg_2));
-}
-.circle_color_light {
     border: 3px solid var(--couleur_bdr);
+    /* faire des variables exprès pour cle cercle */
     background: linear-gradient(to bottom, var(--couleur_deg_1), var(--couleur_deg_2));
 }
+
 .header .circle:before {
     content:"";
     width: 20px;
