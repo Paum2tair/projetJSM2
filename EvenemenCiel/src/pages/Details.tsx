@@ -7,6 +7,7 @@ import Form from "../components/Form";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Event } from "../scripts/Event";
+import Etoiles from "../components/Etoiles";
 
 const Details: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Récupérer l'id de l'URL
@@ -45,6 +46,7 @@ const Details: React.FC = () => {
 
       <div className="principale_container">
         <Header />
+        <Etoiles />
         <div className="container">
           
           <div className="event-details">

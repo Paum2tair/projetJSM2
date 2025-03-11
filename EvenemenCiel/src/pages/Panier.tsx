@@ -3,6 +3,7 @@ import {Event} from '../scripts/Event';
 import Header from '../components/Header';
 import {useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
+import Etoiles from '../components/Etoiles';
 
 
 
@@ -41,6 +42,7 @@ const Panier: React.FC = () => {
   return (
     <div className="principale_container">
       <Header />
+      <Etoiles />
       <div className="container">
         <div className='panier'>
           <h1>Panier</h1>
