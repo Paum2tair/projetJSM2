@@ -104,6 +104,7 @@ const Form: React.FC<FormProps> = ({ eventId, max_places, evente }) => {
         <h3>Réservation confirmée !</h3>
         <p>Merci pour votre réservation de {evente.title}.</p>
         <p>Votre commande a été enregistrée avec succès.</p>
+        <button onClick={() => navigate("/panier")}>Voir mon panier</button>
         <button onClick={() => navigate("/")}>Retour à l'accueil</button>
       </div>
     );
