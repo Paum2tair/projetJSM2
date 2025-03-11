@@ -76,32 +76,31 @@ const Accueil: React.FC = () => {
             <Etoiles />
 
             {/* Filtres dynamiques */}
-    
 
             <div className="container">
-            <div className="filters">
-                <select value={selectedCategory || ''} onChange={(e) => setSelectedCategory(e.target.value || undefined)}>
-                    <option value="">Toutes les catégories</option>
-                    {categories.map(category => (
-                        <option key={category} value={category}>
-                            {category}
-                        </option>
-                    ))}
-                </select>
+                <div className="filters">
+                    <select value={selectedCategory || ''} onChange={(e) => setSelectedCategory(e.target.value || undefined)}>
+                        <option value="">Toutes les catégories</option>
+                        {categories.map(category => (
+                            <option key={category} value={category}>
+                                {category}
+                            </option>
+                        ))}
+                    </select>
 
-                <select value={dateFilter || ''} onChange={(e) => setDateFilter(e.target.value as "past" | "future" || undefined)}>
-                    <option value="">Toutes les dates</option>
-                    <option value="past">Événements passés</option>
-                    <option value="future">Événements futurs</option>
-                </select>
+                    <select value={dateFilter || ''} onChange={(e) => setDateFilter(e.target.value as "past" | "future" || undefined)}>
+                        <option value="">Toutes les dates</option>
+                        <option value="past">Événements passés</option>
+                        <option value="future">Événements futurs</option>
+                    </select>
 
-                <select value={priceOrder || ''} onChange={(e) => setPriceOrder(e.target.value as "asc" | "desc" || undefined)}>
-                    <option value="">Sans tri</option>
-                    <option value="asc">Prix croissant</option>
-                    <option value="desc">Prix décroissant</option>
-                </select>
-                <button onClick={resetFilters}>Réinitialiser les filtres</button>
-            </div>
+                    <select value={priceOrder || ''} onChange={(e) => setPriceOrder(e.target.value as "asc" | "desc" || undefined)}>
+                        <option value="">Sans tri</option>
+                        <option value="asc">Prix croissant</option>
+                        <option value="desc">Prix décroissant</option>
+                    </select>
+                    <button onClick={resetFilters}>Réinitialiser les filtres</button>
+                </div>
                 <div className="lescarte">
                     {error && <p className="error">{error}</p>}
                     {filteredEvents.map(event => (
@@ -123,7 +122,11 @@ const Accueil: React.FC = () => {
                                     <img src="/euro.png" alt="Euro" />
                                 </div>
                             </div>
-                            <div className={`plusplace ${placesRemainingMap[event.id] === 0 ? "hidden" : ""}`}></div>
+                            {placesRemainingMap[event.id] === 0 && (
+                                <div className="plusplace">
+                                    <h2>Y'a plus</h2>
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>
