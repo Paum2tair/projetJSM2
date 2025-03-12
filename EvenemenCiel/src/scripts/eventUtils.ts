@@ -23,6 +23,7 @@ export const filterAndSortEvents = (
         filteredEvents = filteredEvents.filter(event => 
             event.title.toLowerCase().includes(searchLower) || 
             event.description.toLowerCase().includes(searchLower) ||
+            event.price.toFixed(2).toString().toLowerCase().includes(searchLower) ||
             event.location.toLowerCase().includes(searchLower)
         );
     }

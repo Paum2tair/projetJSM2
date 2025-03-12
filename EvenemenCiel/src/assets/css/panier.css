@@ -99,6 +99,14 @@ margin: 0;
     height: fit-content;
     margin-left: 0.5em;
   }
+  .quantity-input{
+    width: 3em;
+    height: 1.9em;
+    border: 1px solid var(--couleur_bleu_fonce);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
 
 
 /***********************************/
@@ -149,7 +157,23 @@ margin: 0;
   .checkout-button:hover {
     background-color: #16a34a;
   }
-
+.relative{
+    display: flex;
+    align-items: center;
+}
+.decrease-button, .increase-button{
+    display: flex;
+    height: 2em;
+    border: 1px solid var(--couleur_bleu_fonce);
+}
+.decrease-button{
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+}
+.increase-button{
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+}
   /* Media query pour les écrans de moins de 300px de large */
 @media (max-width: 500px) {
     .panier h2 {
