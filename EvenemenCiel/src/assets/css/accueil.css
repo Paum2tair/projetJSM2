@@ -3,10 +3,13 @@
     --couleur_fond: #ADD1E3;
     --couleur_deg_1:#FFEBD1;
     --couleur_deg_2:#B0D4E0;
+    --couleur_lune_1:#FFEBD1;
+    --couleur_lune_2:#B0D4E0;
     --couleur_bdr:#417590;
     --footer_contour:#417590;
     --footer_interieur:#ffffff;
     --couleur_bleu_fonce:#417590;
+    --couleur_tites_titre:#0f232e;
     --couleur_bdr2:#0f232e;
     --couleur_hidden:#0f232e89;
     --couleur_text_blanc: white;
@@ -51,9 +54,9 @@ body {
     text-align: center;
     position: relative;
     cursor: pointer;
-    border: 3px solid var(--couleur_bdr);
+    border: 3px solid var(--couleur_tites_titre);
     /* faire des variables exprès pour cle cercle */
-    background: linear-gradient(to bottom, var(--couleur_deg_1), var(--couleur_deg_2));
+    background: linear-gradient(to bottom, var(--couleur_lune_1), var(--couleur_lune_2));
 }
 
 .header .circle:before {
@@ -92,12 +95,12 @@ body {
 .them-container:hover img{
     transform: scale(1.05);
 }
-.dark-theme {
+/* .dark-theme {
     background-color: var(--couleur_bdr);
 }
 .light-theme {
     background-color: var(--couleur_fond);
-}
+} */
 .header img{
     width: 100px;
     transition: ease-in-out 0.2s;
@@ -106,7 +109,7 @@ body {
     font-family: "Kavoon", serif;
     color: var(--couleur_text_blanc);
     letter-spacing: 2px;
-    text-shadow: var(--couleur_bleu_fonce) 2px 1px;
+    text-shadow: var(--couleur_tites_titre) 2px 1px;
     top: 5%;
     position: absolute;
 }

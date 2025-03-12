@@ -7,8 +7,8 @@
     margin-top: 1em;
     padding: 0em 3em;
     align-items: center;
-    border: 3px solid var(--couleur_bdr);
-    box-shadow:3px 3px 5px var(--couleur_bdr);
+    border: 3px solid var(--couleur_fond);
+    box-shadow:3px 3px 5px var(--couleur_bdr2);
     background: linear-gradient(to bottom, var(--couleur_deg_1), var(--couleur_deg_2));
     overflow-x: auto;
 }
@@ -27,8 +27,8 @@
 .panier h2{
     width: 80%;
     text-align: center;
-    color:var(--couleur_bdr);
-    border-bottom: 3px solid var(--couleur_bdr);
+    color:var(--couleur_bleu_fonce);
+    border-bottom: 3px solid var(--couleur_bleu_fonce);
 }
 .item-subtotal{
     font-size: 0.7em;
@@ -63,7 +63,7 @@ margin: 0;
 }
 .input-icon {
 
-    color: var(--couleur_bdr);
+    color: var(--couleur_bleu_fonce);
   }
   .quantity-input::-webkit-outer-spin-button,
   .quantity-input::-webkit-inner-spin-button {
@@ -149,3 +149,23 @@ margin: 0;
   .checkout-button:hover {
     background-color: #16a34a;
   }
+
+  /* Media query pour les écrans de moins de 300px de large */
+@media (max-width: 500px) {
+    .panier h2 {
+        font-size: 1.2em; /* Taille réduite pour le titre */
+    }
+    
+    .item-subtotal {
+        font-size: 0.6em; /* Encore plus petit pour les sous-totaux */
+    }
+    
+    .panier .cart-items {
+        font-size: 0.8em; /* Taille réduite pour tous les textes dans cart-items */
+    }
+    
+    /* Si vous avez d'autres éléments textuels dans le panier, vous pouvez les ajouter ici */
+    .panier p, .panier span, .panier button {
+        font-size: 0.8em;
+    }
+}
