@@ -15,6 +15,7 @@ const Form: React.FC<FormProps> = ({ eventId, max_places, evente }) => {
   const localStorageKey = `places_remaining_${eventId}`;
   const localStorageItem = `panierItems`;
   const [placesRemaining, setPlacesRemaining] = useState<number>(max_places);
+  const [reservationSuccess, setReservationSuccess] = useState<boolean>(false);
   // const [nbPlaces, setNbPlaces] = useState<number>(1);
 
   // Chargement du nombre de places restantes et des tickets deja achetes depuis localStorage
@@ -87,13 +88,29 @@ const Form: React.FC<FormProps> = ({ eventId, max_places, evente }) => {
 
     localStorage.setItem(localStorageItem, JSON.stringify(newResas));
 
-    // Afficher un pop-up "Merci !" puis rediriger vers la page d'accueil
-    alert("Merci pour votre réservation !");
-    navigate("/"); // Redirection vers l'accueil
+    // Afficher un message de succès en remplaçant le formulaire
+    setReservationSuccess(true);
+    
+    // Option: rediriger automatiquement après quelques secondes
+    // setTimeout(() => {
+    //   navigate("/");
+    // }, 3000);
   };
 
+  // Afficher un message de confirmation si la réservation est réussie
+  if (reservationSuccess) {
+    return (
+      <div className="form success-message">
+        <h3>Réservation confirmée !</h3>
+        <p>Merci pour votre réservation de {evente.title}.</p>
+        <p>Votre commande a été enregistrée avec succès.</p>
+        <button onClick={() => navigate("/panier")}>Voir mon panier</button>
+        <button onClick={() => navigate("/")}>Retour à l'accueil</button>
+      </div>
+    );
+  }
+
   return (
-    
     <div className="form">
       <h3>Réservation de l'événement</h3>
       <p>Places restantes : {placesRemaining}</p>

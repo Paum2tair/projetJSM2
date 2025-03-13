@@ -3,7 +3,13 @@
     --couleur_fond: #ADD1E3;
     --couleur_deg_1:#FFEBD1;
     --couleur_deg_2:#B0D4E0;
+    --couleur_lune_1:#FFEBD1;
+    --couleur_lune_2:#B0D4E0;
     --couleur_bdr:#417590;
+    --footer_contour:#417590;
+    --footer_interieur:#ffffff;
+    --couleur_bleu_fonce:#417590;
+    --couleur_tites_titre:#0f232e;
     --couleur_bdr2:#0f232e;
     --couleur_hidden:#0f232e89;
     --couleur_text_blanc: white;
@@ -41,14 +47,18 @@ body {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background: linear-gradient(to bottom, var(--couleur_deg_1), var(--couleur_deg_2));
-    border: 3px solid var(--couleur_bdr);
+    /* background: linear-gradient(to bottom, var(--couleur_deg_1), var(--couleur_deg_2)); */
+    /* border: 3px solid var(--couleur_bdr); */
     display: flex;
     justify-content:center;
     text-align: center;
     position: relative;
     cursor: pointer;
+    border: 3px solid var(--couleur_tites_titre);
+    /* faire des variables exprès pour cle cercle */
+    background: linear-gradient(to bottom, var(--couleur_lune_1), var(--couleur_lune_2));
 }
+
 .header .circle:before {
     content:"";
     width: 20px;
@@ -74,6 +84,23 @@ body {
 .panier-container:hover img{
     transform: scale(1.05);
 }
+.them-container {
+    position: absolute;
+    left:1em; 
+    cursor: pointer;
+}
+.them-container img {
+    width: 50px !important;
+}
+.them-container:hover img{
+    transform: scale(1.05);
+}
+/* .dark-theme {
+    background-color: var(--couleur_bdr);
+}
+.light-theme {
+    background-color: var(--couleur_fond);
+} */
 .header img{
     width: 100px;
     transition: ease-in-out 0.2s;
@@ -82,7 +109,7 @@ body {
     font-family: "Kavoon", serif;
     color: var(--couleur_text_blanc);
     letter-spacing: 2px;
-    text-shadow: var(--couleur_bdr) 2px 1px;
+    text-shadow: var(--couleur_tites_titre) 2px 1px;
     top: 5%;
     position: absolute;
 }
@@ -96,19 +123,17 @@ body {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-}
-.footer p{
-    color: var(--couleur_deg_1);
+    color: var( --footer_interieur);
     font-family: "Kavoon", serif;
     text-shadow:
-    -2px -2px 0 var(--couleur_bdr),
-     2px -2px 0 var(--couleur_bdr),
-    -2px  2px 0 var(--couleur_bdr),
-     2px  2px 0 var(--couleur_bdr),
-    -3px  0px 0 var(--couleur_bdr),
-     3px  0px 0 var(--couleur_bdr),
-     0px -3px 0 var(--couleur_bdr),
-     0px  3px 0 var(--couleur_bdr);
+    -2px -2px 0 var(--footer_contour),
+     2px -2px 0 var(--footer_contour),
+    -2px  2px 0 var(--footer_contour),
+     2px  2px 0 var(--footer_contour),
+    -3px  0px 0 var(--footer_contour),
+     3px  0px 0 var(--footer_contour),
+     0px -3px 0 var(--footer_contour),
+     0px  3px 0 var(--footer_contour);
 }
  .container {
     display: flex;
@@ -133,11 +158,16 @@ body {
     width: 20em;
     overflow: hidden;
     transition: transform 0.3s;
-    box-shadow:3px 3px 5px var(--couleur_bdr);
+    box-shadow:3px 3px 5px var(--couleur_bdr2);
     margin: 1em;
     display: flex;
     position: relative;
-
+}
+.event_card_dark {
+    box-shadow:3px 3px 5px var(--couleur_fond);
+}
+.event_card_light {
+    box-shadow:3px 3px 5px var(--couleur_bdr);
 }
 .event-card.hidden{
     pointer-events: none;
@@ -165,7 +195,7 @@ body {
 }
 
 .event-date, .event-location {
-    color: var(--couleur_bdr);
+    color: var(--couleur_bleu_fonce);
     font-size: 0.8em;
     display: flex;
     flex-direction: row;
@@ -188,7 +218,7 @@ body {
     bottom: 0.5em;
     right: 1em;
     display: flex;
-    color: var(--couleur_bdr);
+    color: var(--couleur_bleu_fonce);
     text-shadow:var(--couleur_bdr2) 1px 1px 1px ;
     font-size: 1.3em;
     align-items: center;
@@ -262,7 +292,7 @@ body {
     margin-top: 1em;
 
 }
-.container .filters select ,.container .filters button {
+.container .filters select ,.container .filters button, .filters input {
     padding:0.2em;
     border-radius: 10px;
     margin-left: 1em;
@@ -273,4 +303,18 @@ body {
 .container .filters select option {
     background: var(--couleur_deg_1);
 }
+
+
+
+  .no-results {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    border-radius: 1em;
+    background: linear-gradient(to bottom, var(--couleur_deg_1), var(--couleur_deg_2));
+    color: var(--couleur_bdr2);
+    border: var(--couleur_text_blanc) 2px solid;
+    box-shadow: var(--couleur_bdr) 2px 2px 5px;
+  }
 

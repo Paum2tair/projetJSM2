@@ -1,0 +1,195 @@
+.panier {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 1em;
+    margin-top: 1em;
+    padding: 0em 3em;
+    align-items: center;
+    border: 3px solid var(--couleur_fond);
+    box-shadow:3px 3px 5px var(--couleur_bdr2);
+    background: linear-gradient(to bottom, var(--couleur_deg_1), var(--couleur_deg_2));
+    overflow-x: auto;
+}
+.panier .image_title{
+    width: 3em;
+    height: 3em;
+    object-fit: cover;
+    overflow: hidden;
+   border-radius: 50%;
+   margin-right: 1em;
+}
+.titre_text{
+    display: flex;
+    align-items: center;
+}
+.panier h2{
+    width: 80%;
+    text-align: center;
+    color:var(--couleur_bleu_fonce);
+    border-bottom: 3px solid var(--couleur_bleu_fonce);
+}
+.item-subtotal{
+    font-size: 0.7em;
+}
+.panier .cart-items{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+width: 100%;
+padding: 0;
+margin: 0;
+
+}
+.panier .item-info p{
+    margin: 0;
+    
+}
+
+.panier .cart-items .cart-item .item-details{
+    padding: 0.5em 1em;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.cart-item .item-details svg{
+    width: 1em;
+}
+.panier .quantity-help-text{
+    font-size: 0.7em;
+}
+.input-icon {
+
+    color: var(--couleur_bleu_fonce);
+  }
+  .quantity-input::-webkit-outer-spin-button,
+  .quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+
+  /* Modification du conteneur principal des détails */
+.panier .cart-items .cart-item .item-details {
+    padding: 0.5em 1em;
+    display: flex;
+    justify-content: space-between; /* Pour espacer les éléments équitablement */
+    align-items: flex-start; /* Pour aligner les éléments en haut */
+    width: 100%; /* Pour que le conteneur prenne toute la largeur disponible */
+  }
+
+  .item-info {
+    flex: 1; 
+    margin-right: 0.5em;
+  }
+
+  .quantity-control {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* Style pour le bouton de suppression */
+  .remove-button {
+    align-self: flex-start;
+    height: fit-content;
+    margin-left: 0.5em;
+  }
+  .quantity-input{
+    width: 3em;
+    height: 1.9em;
+    border: 1px solid var(--couleur_bleu_fonce);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+
+/***********************************/
+
+.remove-button {
+    background: rgb(113, 23, 23);
+    color: var(--couleur_text_blanc);
+    border: none;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .remove-button:hover{
+    background: rgb(167, 36, 36);
+
+  }
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .continue-shopping, .checkout-button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .continue-shopping {
+    background-color: #f8fafc;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+  }
+  
+  .continue-shopping:hover {
+    background-color: #f1f5f9;
+  }
+  
+  .checkout-button {
+    background-color: #22c55e;
+    color: white;
+  }
+  
+  .checkout-button:hover {
+    background-color: #16a34a;
+  }
+.relative{
+    display: flex;
+    align-items: center;
+}
+.decrease-button, .increase-button{
+    display: flex;
+    height: 2em;
+    border: 1px solid var(--couleur_bleu_fonce);
+}
+.decrease-button{
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+}
+.increase-button{
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+}
+  /* Media query pour les écrans de moins de 300px de large */
+@media (max-width: 500px) {
+    .panier h2 {
+        font-size: 1.2em; /* Taille réduite pour le titre */
+    }
+    
+    .item-subtotal {
+        font-size: 0.6em; /* Encore plus petit pour les sous-totaux */
+    }
+    
+    .panier .cart-items {
+        font-size: 0.8em; /* Taille réduite pour tous les textes dans cart-items */
+    }
+    
+    /* Si vous avez d'autres éléments textuels dans le panier, vous pouvez les ajouter ici */
+    .panier p, .panier span, .panier button {
+        font-size: 0.8em;
+    }
+}
