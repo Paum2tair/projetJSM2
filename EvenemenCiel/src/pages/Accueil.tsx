@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Etoiles from "../components/Etoiles";
 import { Event } from "../scripts/Event";
 import { filterAndSortEvents } from "../scripts/eventUtils";
+import { getAllEvents } from "../scripts/GetAll";
 
 const Accueil: React.FC = () => {
     const nav = useNavigate();
@@ -29,13 +30,7 @@ const Accueil: React.FC = () => {
     };
     
     useEffect(() => {
-        fetch("/events.json")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Erreur de chargement du JSON");
-                }
-                return response.json();
-            })
+        getAllEvents()
             .then((data: Event[]) => {
                 setEvents(data);
                 setFilteredEvents(data);
