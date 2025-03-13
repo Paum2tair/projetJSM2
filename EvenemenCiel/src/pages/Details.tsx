@@ -7,8 +7,10 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Event } from "../scripts/Event";
 import Etoiles from "../components/Etoiles";
-
-const Details: React.FC = () => {
+interface DetailsProps {
+    events: Event[];
+  }
+const Details: React.FC<DetailsProps> = ({events}) => {
   const { id } = useParams<{ id: string }>(); // Récupérer l'id de l'URL
   const [event, setEvent] = useState<Event | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -29,22 +31,14 @@ const Details: React.FC = () => {
   }, [showForm, localStorageShowFormKey]);
 
   useEffect(() => {
-    fetch('/events.json')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Erreur de chargement du JSON');
-        }
-        return response.json();
-      })
-      .then((data: Event[]) => {
-        const foundEvent = data.find(event => event.id === Number(id)); // Trouver l'événement correspondant
+   
+        const foundEvent = events.find(event => event.id === Number(id)); // Trouver l'événement correspondant
         if (!foundEvent) {
           setError("Événement introuvable");
         } else {
           setEvent(foundEvent);
         }
-      })
-      .catch(error => setError(error.message));
+
   }, [id]); // Recharger si l'ID change
 
   const toggleForm = () => {

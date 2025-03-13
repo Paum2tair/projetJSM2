@@ -7,10 +7,13 @@ import Etoiles from "../components/Etoiles";
 import { Event } from "../scripts/Event";
 import { filterAndSortEvents } from "../scripts/eventUtils";
 import { getAllEvents } from "../scripts/GetAll";
-
-const Accueil: React.FC = () => {
+interface AccueilProps {
+    events: Event[];
+    setEvents: React.Dispatch<React.SetStateAction<Event[]>>;
+  }
+  const Accueil: React.FC<AccueilProps> = ({ events, setEvents }) => {
     const nav = useNavigate();
-    const [events, setEvents] = useState<Event[]>([]);
+    //const [events, setEvents] = useState<Event[]>([]);
     const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
     const [categories, setCategories] = useState<string[]>([]); // Stocke les catégories
     const [error, setError] = useState<string | null>(null);
