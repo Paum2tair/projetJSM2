@@ -63,12 +63,11 @@ const Panier: React.FC<PanierProps> = ({setEvents}) => {
     let max_attendees = 0;
     const newItems = items.map(i => {
       if (i.id === id) {
-<<<<<<< HEAD
+
         console.log('id:',id);
-        
-=======
-        max_attendees = i.max_attendees;
->>>>>>> a45093751cde80ecf608a7dd64a4f6157fd7c24c
+
+        //max_attendees = i.max_attendees;
+
         return { ...i, nb_ticket: newQuantity };
       }
       return i;
