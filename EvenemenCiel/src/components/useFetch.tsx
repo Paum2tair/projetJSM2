@@ -2,15 +2,15 @@ import { useState, useEffect } from 'react';
 import { Event } from '../scripts/Event';
 
 interface UseFetchResult {
-    data: Event | null;
+    data: Event[] | null;
     isPending: boolean;
     error: any | null;
 }
 
 // Hook utilisé pour récupérer les données de l'API
-const useFetch = (url: string): UseFetchResult => {
-    url = 'http://localhost:3000/'+url;
-    const [data, setData] = useState<Event | null>(null);
+const useFetch = (): UseFetchResult => {
+    const url = 'http://localhost:3000/';
+    const [data, setData] = useState<Event[] | null>(null);
     const [isPending, setIsPending] = useState<boolean>(true);
     const [error, setError] = useState<any | null>(null);
 
