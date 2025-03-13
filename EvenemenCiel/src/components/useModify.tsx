@@ -1,22 +1,18 @@
 import { useState } from 'react';
-import { Event } from '../scripts/Event';
 
 interface UseModifyResult<T> {
-    data: Event | undefined;
+    data: T | null;
     isPending: boolean;
     error: any | null;
-    modifyData: (method: 'PUT', body?: any) => void;
+    modifyData: (url: string, method: 'POST' | 'PUT' | 'DELETE', body: any) => void;
 }
 
-const useModify = <T,>(url: string, ): UseModifyResult<T> => {
-
-    url = 'http://localhost:3000/'+url;
-
-    const [data, setData] = useState<Event>();
+const useModify = <T,>(): UseModifyResult<T> => {
+    const [data, setData] = useState<T | null>(null);
     const [isPending, setIsPending] = useState<boolean>(false);
     const [error, setError] = useState<any | null>(null);
 
-    const modifyData = (method: 'PUT', body?: any) => {
+    const modifyData = (url: string, method: 'POST' | 'PUT' | 'DELETE', body: any) => {
         setIsPending(true);
         setError(null);
 
@@ -25,7 +21,7 @@ const useModify = <T,>(url: string, ): UseModifyResult<T> => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: body ? JSON.stringify(body) : null,
+            body: JSON.stringify(body),
         })
             .then(res => {
                 if (!res.ok) {
