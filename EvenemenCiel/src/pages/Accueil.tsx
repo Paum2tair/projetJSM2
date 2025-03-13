@@ -6,17 +6,14 @@ import Header from "../components/Header";
 import Etoiles from "../components/Etoiles";
 import { Event } from "../scripts/Event";
 import { filterAndSortEvents } from "../scripts/eventUtils";
-import { getAllEvents } from "../scripts/GetAll";
 interface AccueilProps {
     events: Event[];
-    setEvents: React.Dispatch<React.SetStateAction<Event[]>>;
   }
-  const Accueil: React.FC<AccueilProps> = ({ events, setEvents }) => {
+  const Accueil: React.FC<AccueilProps> = ({ events }) => {
     const nav = useNavigate();
     //const [events, setEvents] = useState<Event[]>([]);
     const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
     const [categories, setCategories] = useState<string[]>([]); // Stocke les catégories
-    const [error, setError] = useState<string | null>(null);
     const [placesRemainingMap, setPlacesRemainingMap] = useState<{ [key: number]: number }>({});
 
     // États pour les filtres
@@ -31,30 +28,17 @@ interface AccueilProps {
         setPriceOrder(undefined);
         setSearchTerm("");
     };
-    
+
     useEffect(() => {
-        getAllEvents()
-            .then((data: Event[]) => {
-                setEvents(data);
-                setFilteredEvents(data);
-                localStorage.setItem("data",JSON.stringify(data));
-
-                // Extraire les catégories uniques
-                const uniqueCategories = Array.from(new Set(data.map(event => event.category)));
-                setCategories(uniqueCategories);
-
-                // Initialiser les places restantes
-                const placesMap: { [key: number]: number } = {};
-                data.forEach(event => {
-                    const localStorageKey = `places_remaining_${event.id}`;
-                    const savedPlaces = localStorage.getItem(localStorageKey);
-                    placesMap[event.id] = savedPlaces !== null ? parseInt(savedPlaces, 10) : event.max_attendees;
-                });
-
-                setPlacesRemainingMap(placesMap);
-            })
-            .catch(error => setError(error.message));
-    }, []);
+        const placesMap: { [key: number]: number } = {};
+        events.forEach(event => {
+            const savedPlaces = event.nb_ticket;
+            placesMap[event.id] = savedPlaces !== null ? event.max_attendees - savedPlaces: event.max_attendees;
+        });
+        setPlacesRemainingMap(placesMap);
+        const uniqueCategories = Array.from(new Set(events.map(event => event.category)));
+        setCategories(uniqueCategories);
+    },[events]);
 
     // Mettre à jour les événements filtrés et triés lorsque les filtres changent
     useEffect(() => {
@@ -116,7 +100,6 @@ interface AccueilProps {
                 </div>
                 
                 <div className="lescarte">
-                    {error && <p className="error">{error}</p>}
                     {filteredEvents.length > 0 ? (
                         filteredEvents.map(event => (
                             <div

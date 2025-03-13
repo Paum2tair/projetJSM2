@@ -10,8 +10,9 @@ import Etoiles from "../components/Etoiles";
 import { getAllEvents } from "../scripts/GetAll";
 interface DetailsProps {
   events: Event[];
+   setEvents: React.Dispatch<React.SetStateAction<Event[]>>;
 }
-const Details: React.FC<DetailsProps> = ({ events }) => {
+const Details: React.FC<DetailsProps> = ({ events, setEvents }) => {
   const { id } = useParams<{ id: string }>(); // Récupérer l'id de l'URL
   const [event, setEvent] = useState<Event | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -32,22 +33,25 @@ const Details: React.FC<DetailsProps> = ({ events }) => {
   }, [showForm, localStorageShowFormKey]);
 
   useEffect(() => {
-    console.log("id:", id);
-    let foundEvent = events.find((event) => event.id.toString() === id);
-    console.log('find', foundEvent);
-    if (!foundEvent) {
-      getAllEvents()
-        .then((data: Event[]) => {
-          localStorage.setItem("data", JSON.stringify(data));
-          const event2 = data;
-          foundEvent = event2.find((event) => event.id.toString() === id);
-        })
-        .catch(error => setError(error.message));
-    } else {
-      setEvent(foundEvent);
-    }
+    const savedData = localStorage.getItem("data");
+    let allEvents = savedData ? JSON.parse(savedData) : events;
 
-  }, [id]); // Recharger si l'ID change
+    let foundEvent = allEvents.find((event: { id: { toString: () => string | undefined; }; }) => event.id.toString() === id);
+    
+    if (foundEvent) {
+        setEvent(foundEvent);
+    } else {
+        getAllEvents()
+            .then((data: Event[]) => {
+                const foundEventFromAPI = data.find(event => event.id.toString() === id);
+                if (foundEventFromAPI) {
+                    setEvent(foundEventFromAPI);
+                }
+            })
+            .catch(error => setError(error.message));
+    }
+}, [id]);
+
 
   const toggleForm = () => {
     setShowForm(!showForm);
@@ -60,6 +64,7 @@ const Details: React.FC<DetailsProps> = ({ events }) => {
   if (!event) {
     return <p>Chargement...</p>;
   }
+
 
   return (
     <>
@@ -91,7 +96,7 @@ const Details: React.FC<DetailsProps> = ({ events }) => {
           <div
             className={`form-container ${showForm ? 'open' : 'closed'}`}
           >
-            {showForm && <Form eventId={event.id} max_places={event.max_attendees} evente={event} />}
+            {showForm && <Form eventId={event.id} max_places={event.max_attendees} events={events} setEvents={setEvents} />}
           </div>
         </div>
         <Footer />

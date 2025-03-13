@@ -5,21 +5,27 @@ import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Etoiles from '../components/Etoiles';
 import '../assets/css/panier.css';
-
-const Panier: React.FC = () => {
+interface PanierProps {
+   setEvents: React.Dispatch<React.SetStateAction<Event[]>>;
+}
+const Panier: React.FC<PanierProps> = ({setEvents}) => {
   //Mise en place des Items du Panier 
   const [items, setItems] = useState<Event[]>([]);
   //Mise en place de la navigation
   const nav = useNavigate();
   //Mise en place du total du panier
   const total = items.reduce((acc, item) => acc + (item.price * item.nb_ticket), 0);
+  const events = JSON.parse(localStorage.getItem('data'));
 
   useEffect(() => {
     //-----------------------Récupération des Items du Panier-----------------------
-    const storedItems = localStorage.getItem('panierItems');
+  
+    let foundEvents = events.filter((event: { nb_ticket: number }) => event.nb_ticket !== 0);
+    console.log(foundEvents);
+    const storedItems = foundEvents;
     if (storedItems) {
-      setItems(JSON.parse(storedItems));
-      console.log('Panier récupéré depuis le localStorage :', JSON.parse(storedItems));
+      setItems(storedItems);
+      console.log('Panier récupéré depuis le localStorage :', storedItems);
     }
   }, []);
 
@@ -56,11 +62,17 @@ const Panier: React.FC = () => {
   const updateItemQuantity = (id: number, newQuantity: number) => {
     const newItems = items.map(i => {
       if (i.id === id) {
+        console.log('id:',id);
+        
         return { ...i, nb_ticket: newQuantity };
       }
       return i;
     });
     setItems(newItems);
+    events[id].nb_ticket = newQuantity;
+    setEvents(events);
+
+    localStorage.setItem("data", JSON.stringify(events));
     localStorage.setItem('panierItems', JSON.stringify(newItems));
   };
 
