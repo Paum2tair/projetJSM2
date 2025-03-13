@@ -9,7 +9,7 @@ interface UseFetchResult {
 
 // Hook utilisé pour récupérer les données de l'API
 const useFetch = (): UseFetchResult => {
-    const url = 'http://localhost:3000/';
+    const url = ('http://localhost:3000/events');
     const [data, setData] = useState<Event[] | null>(null);
     const [isPending, setIsPending] = useState<boolean>(true);
     const [error, setError] = useState<any | null>(null);
