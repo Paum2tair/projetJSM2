@@ -54,14 +54,17 @@ const Panier: React.FC = () => {
 
   // Fonction générique pour mettre à jour la quantité
   const updateItemQuantity = (id: number, newQuantity: number) => {
+    let max_attendees = 0;
     const newItems = items.map(i => {
       if (i.id === id) {
+        max_attendees = i.max_attendees;
         return { ...i, nb_ticket: newQuantity };
       }
       return i;
     });
     setItems(newItems);
     localStorage.setItem('panierItems', JSON.stringify(newItems));
+    localStorage.setItem("places_remaining_" + id, (max_attendees - newQuantity).toString());
   };
 
   return (
