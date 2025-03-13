@@ -37,6 +37,7 @@ interface AccueilProps {
             .then((data: Event[]) => {
                 setEvents(data);
                 setFilteredEvents(data);
+                localStorage.setItem("data",JSON.stringify(data));
 
                 // Extraire les catégories uniques
                 const uniqueCategories = Array.from(new Set(data.map(event => event.category)));
@@ -84,8 +85,6 @@ interface AccueilProps {
             {/* Filtres dynamiques */}
             <div className="container">
                 <div className="filters">
-                   
-                    
                     <select value={selectedCategory || ''} onChange={(e) => setSelectedCategory(e.target.value || undefined)}>
                         <option value="">Toutes les catégories</option>
                         {categories.map(category => (

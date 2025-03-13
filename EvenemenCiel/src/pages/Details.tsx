@@ -31,8 +31,9 @@ const Details: React.FC<DetailsProps> = ({events}) => {
   }, [showForm, localStorageShowFormKey]);
 
   useEffect(() => {
-   
-        const foundEvent = events.find(event => event.id === Number(id)); // Trouver l'événement correspondant
+    console.log("id:",id);
+    const foundEvent = events.find((event) => event.id.toString() === id);
+        console.log('find',foundEvent);
         if (!foundEvent) {
           setError("Événement introuvable");
         } else {

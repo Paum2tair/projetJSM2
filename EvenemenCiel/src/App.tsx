@@ -10,7 +10,10 @@ import { Event } from './scripts/Event';
 import { useState } from 'react';
 
 function App() {
- const [events, setEvents] = useState<Event[]>([]);
+ const [events, setEvents] = useState<Event[]>(() => {
+  const savedData = localStorage.getItem("data");
+  return savedData ? JSON.parse(savedData) : [];
+});
   return (
     <>
       <Router>
