@@ -6,10 +6,14 @@ import Header from "../components/Header";
 import Etoiles from "../components/Etoiles";
 import { Event } from "../scripts/Event";
 import { filterAndSortEvents } from "../scripts/eventUtils";
-
-const Accueil: React.FC = () => {
+import { getAllEvents } from "../scripts/GetAll";
+interface AccueilProps {
+    events: Event[];
+    setEvents: React.Dispatch<React.SetStateAction<Event[]>>;
+  }
+  const Accueil: React.FC<AccueilProps> = ({ events, setEvents }) => {
     const nav = useNavigate();
-    const [events, setEvents] = useState<Event[]>([]);
+    //const [events, setEvents] = useState<Event[]>([]);
     const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
     const [categories, setCategories] = useState<string[]>([]); // Stocke les catégories
     const [error, setError] = useState<string | null>(null);
@@ -29,16 +33,11 @@ const Accueil: React.FC = () => {
     };
     
     useEffect(() => {
-        fetch("/events.json")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Erreur de chargement du JSON");
-                }
-                return response.json();
-            })
+        getAllEvents()
             .then((data: Event[]) => {
                 setEvents(data);
                 setFilteredEvents(data);
+                localStorage.setItem("data",JSON.stringify(data));
 
                 // Extraire les catégories uniques
                 const uniqueCategories = Array.from(new Set(data.map(event => event.category)));
@@ -86,8 +85,6 @@ const Accueil: React.FC = () => {
             {/* Filtres dynamiques */}
             <div className="container">
                 <div className="filters">
-                   
-                    
                     <select value={selectedCategory || ''} onChange={(e) => setSelectedCategory(e.target.value || undefined)}>
                         <option value="">Toutes les catégories</option>
                         {categories.map(category => (
