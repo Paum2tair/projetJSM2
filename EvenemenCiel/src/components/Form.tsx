@@ -8,36 +8,96 @@ interface FormProps {
   setEvents: React.Dispatch<React.SetStateAction<Event[]>>;
 }
 
+interface FormData {
+  name: string;
+  email: string;
+  places: number;
+}
+
+interface FormErrors {
+  name: string;
+  email: string;
+  places: string;
+}
+
 const Form: React.FC<FormProps> = ({ eventId, events, setEvents }) => {
   const navigate = useNavigate();
   const [reservationSuccess, setReservationSuccess] = useState<boolean>(false);
-  const [nbPlaces, setNbPlaces] = useState<number>(1);
-  const [isValid, setIsValid] = useState<boolean>(true);
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    places: 1
+  });
+  const [formErrors, setFormErrors] = useState<FormErrors>({
+    name: "",
+    email: "",
+    places: ""
+  });
+  const [isFormValid, setIsFormValid] = useState<boolean>(false);
 
   const maxAvailablePlaces = events[eventId].max_attendees - events[eventId].nb_ticket;
 
-  // Validation du nombre de places en temps réel
+  // Validation des champs du formulaire
   useEffect(() => {
-    if (nbPlaces > maxAvailablePlaces) {
-      setIsValid(false);
-      setErrorMessage(`Vous ne pouvez pas réserver plus de ${maxAvailablePlaces} place${maxAvailablePlaces > 1 ? 's' : ''}`);
-    } else if (nbPlaces < 1) {
-      setIsValid(false);
-      setErrorMessage("Vous devez réserver au moins 1 place");
-    } else {
-      setIsValid(true);
-      setErrorMessage("");
-    }
-  }, [nbPlaces, maxAvailablePlaces]);
+    const validateForm = () => {
+      const errors: FormErrors = {
+        name: "",
+        email: "",
+        places: ""
+      };
+      
+      // Validation du nom
+      if (formData.name.trim().length === 0) {
+        errors.name = "Le nom est requis";
+      } else if (formData.name.trim().length < 2) {
+        errors.name = "Le nom doit contenir au moins 2 caractères";
+      }
+      
+      // Validation de l'email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (formData.email.trim().length === 0) {
+        errors.email = "L'email est requis";
+      } else if (!emailRegex.test(formData.email)) {
+        errors.email = "Veuillez entrer une adresse email valide";
+      }
+      
+      // Validation du nombre de places
+      if (formData.places <= 0) {
+        errors.places = "Vous devez réserver au moins 1 place";
+      } else if (formData.places > maxAvailablePlaces) {
+        errors.places = `Vous ne pouvez pas réserver plus de ${maxAvailablePlaces} place${maxAvailablePlaces > 1 ? 's' : ''}`;
+      }
+      
+      setFormErrors(errors);
+      
+      // Le formulaire est valide si tous les champs sont remplis et sans erreurs
+      const isValid = 
+        formData.name.trim().length >= 1 && 
+        emailRegex.test(formData.email) && 
+        formData.places > 0 && 
+        formData.places <= maxAvailablePlaces;
+      
+      setIsFormValid(isValid);
+    };
+    
+    validateForm();
+  }, [formData, maxAvailablePlaces]);
+
+  // Gestion des changements dans les champs du formulaire
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: name === "places" ? Number(value) : value
+    }));
+  };
 
   // Gestion de la soumission du formulaire
   const handleSubmit = (event2: React.FormEvent<HTMLFormElement>) => {
     event2.preventDefault();
 
-    // Vérifier si la demande est valide avant de procéder
-    if (!isValid || nbPlaces > maxAvailablePlaces) {
-      setErrorMessage(`Impossible de réserver : nombre de places demandé (${nbPlaces}) supérieur aux places disponibles (${maxAvailablePlaces})`);
+    // Vérification finale avant soumission
+    if (!isFormValid) {
       return;
     }
 
@@ -45,7 +105,7 @@ const Form: React.FC<FormProps> = ({ eventId, events, setEvents }) => {
     const updatedEvents = [...events];
     updatedEvents[eventId] = {
       ...updatedEvents[eventId],
-      nb_ticket: updatedEvents[eventId].nb_ticket + nbPlaces
+      nb_ticket: updatedEvents[eventId].nb_ticket + formData.places
     };
 
     // Mettre à jour l'état et le stockage local
@@ -54,17 +114,12 @@ const Form: React.FC<FormProps> = ({ eventId, events, setEvents }) => {
     setReservationSuccess(true);
   };
 
-  // Gérer le changement de nombre de places
-  const handlePlacesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNbPlaces(Number(e.target.value));
-  };
-
   // Afficher un message de confirmation si la réservation est réussie
   if (reservationSuccess) {
     return (
       <div className="form success-message">
         <h3>Réservation confirmée !</h3>
-        <p>Merci pour votre réservation de {nbPlaces} place{nbPlaces > 1 ? 's' : ''}.</p>
+        <p>Merci pour votre réservation de {formData.places} place{formData.places > 1 ? 's' : ''}.</p>
         <p>Votre commande a été enregistrée avec succès.</p>
         <button onClick={() => navigate("/panier")}>Voir mon panier</button>
         <button onClick={() => navigate("/")}>Retour à l'accueil</button>
@@ -80,12 +135,30 @@ const Form: React.FC<FormProps> = ({ eventId, events, setEvents }) => {
       <form onSubmit={handleSubmit} className="submit_f">
         <div className="element">
           <label htmlFor="name">Nom :</label>
-          <input type="text" className="textarea" id="name" name="name" placeholder="Nom" required />
+          <input 
+            type="text" 
+            className="textarea" 
+            id="name" 
+            name="name" 
+            placeholder="Nom" 
+            value={formData.name}
+            onChange={handleInputChange}
+            required 
+          />
         </div>
         
         <div className="element">
           <label htmlFor="email">Email :</label>
-          <input type="email" className="textarea" id="email" name="email" placeholder="Email" required />
+          <input 
+            type="email" 
+            className="textarea" 
+            id="email" 
+            name="email" 
+            placeholder="Email" 
+            value={formData.email}
+            onChange={handleInputChange}
+            required 
+          />
         </div>
         
         <div className="element">
@@ -96,22 +169,33 @@ const Form: React.FC<FormProps> = ({ eventId, events, setEvents }) => {
             id="places"
             name="places"
             placeholder="1"
-            onChange={handlePlacesChange}
-            value={nbPlaces}
+            value={formData.places}
+            onChange={handleInputChange}
             min="1"
             max={maxAvailablePlaces}
             required
           />
+  
         </div>
-        
-        {/* Message d'erreur affiché en temps réel */}
-        {!isValid && (
-          <div className="error-message" style={{ color: "red", marginTop: "8px" }}>
-            {errorMessage}
-          </div>
-        )}
+        {formErrors.name && (
+            <div className="error-message" style={{ color: "red", fontSize: "0.8rem", marginTop: "4px" }}>
+              {formErrors.name}
+            </div>
+          )}
+               {formErrors.email && (
+            <div className="error-message" style={{ color: "red", fontSize: "0.8rem", marginTop: "4px" }}>
+              {formErrors.email}
+            </div>
+          )}
+          {formErrors.places && (
+            <div className="error-message" style={{ color: "red", fontSize: "0.8rem", marginTop: "4px" }}>
+              {formErrors.places}
+            </div>
+          )}
 
-        <button type="submit" className="submit" disabled={!isValid}>Valider</button>
+        <button type="submit" className="submit" disabled={!isFormValid}>
+          Valider
+        </button>
       </form>
     </div>
   );
