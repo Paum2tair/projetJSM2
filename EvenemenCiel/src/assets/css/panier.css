@@ -1,3 +1,15 @@
+#validee{
+  color: green;
+  width: fit-content;
+  display: none;
+  border-radius: 1em;
+  margin-top: 1em;
+  padding: 0em 3em;
+  border: 3px solid var(--couleur_fond);
+  box-shadow:3px 3px 5px var(--couleur_bdr2);
+  background: linear-gradient(to bottom, var(--couleur_deg_1), var(--couleur_deg_2));
+} 
+
 .panier {
     width: fit-content;
     display: flex;

@@ -31,6 +31,42 @@ const Panier: React.FC<PanierProps> = ({setEvents}) => {
     }
   }, []);
 
+  //Fonction de mise à jour du JSON
+  const updateJson = (event: any) => {
+    fetch(`http://localhost:3000/events/${event.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...event,
+        id: Number(event.id)
+      }),
+    })
+      .then(response => response.json())
+      .then(updatedEvent => {
+        console.log("Événement mis à jour :", updatedEvent);
+      })
+      .catch(error => console.error("Erreur lors de la mise à jour :", error));
+  }
+
+  //Fonction de validation du panier
+  const validatePanier = () => {  
+    console.log('items:',items);
+
+    items.forEach((item) => {
+      updateJson(item);
+      events[item.id].max_attendees -= item.nb_ticket;
+      events[item.id].nb_ticket = 0;
+    });
+
+    localStorage.setItem("data", JSON.stringify(events)); 
+    setItems([]);
+    //mise à block du display de la balise validée
+    document.getElementById('validee')!.style.display = 'flex';
+
+  }
+
   //Fonction pour supprimer un item du panier
   const removeItemFromPanier = (id: number) => {
     //Suppression de l'item dans le panier
@@ -182,11 +218,12 @@ const Panier: React.FC<PanierProps> = ({setEvents}) => {
             Continuer mes achats
           </button>
           {items.length > 0 && (
-            <button className="checkout-button">
+            <button className="checkout-button" onClick={() => validatePanier()}>
               Passer la commande
             </button>
           )}
         </div>
+        <small id="validee">Commande validée</small>
       </div>
       <Footer />
     </div>
