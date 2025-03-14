@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Etoiles from '../components/Etoiles';
 import '../assets/css/panier.css';
+
 interface PanierProps {
    setEvents: React.Dispatch<React.SetStateAction<Event[]>>;
 }
@@ -15,17 +16,18 @@ const Panier: React.FC<PanierProps> = ({setEvents}) => {
   const nav = useNavigate();
   //Mise en place du total du panier
   const total = items.reduce((acc, item) => acc + (item.price * item.nb_ticket), 0);
-  const events = JSON.parse(localStorage.getItem('data'));
+
+  const events = JSON.parse(localStorage.getItem('data') || '[]');
+
 
   useEffect(() => {
     //-----------------------Récupération des Items du Panier-----------------------
-  
     let foundEvents = events.filter((event: { nb_ticket: number }) => event.nb_ticket !== 0);
     console.log(foundEvents);
     const storedItems = foundEvents;
     if (storedItems) {
       setItems(storedItems);
-      console.log('Panier récupéré depuis le localStorage :', storedItems);
+      // console.log('Panier récupéré depuis le localStorage :', storedItems);
     }
   }, []);
 
@@ -34,10 +36,14 @@ const Panier: React.FC<PanierProps> = ({setEvents}) => {
     //Suppression de l'item dans le panier
     const newItems = items.filter(item => item.id !== id);
     setItems(newItems);
-    localStorage.setItem('panierItems', JSON.stringify(newItems));
-    //Suppression de la quantité de l'item dans le panier
-    const quantityItem = "places_remaining_" + id;
-    localStorage.removeItem(quantityItem);
+    events[id].nb_ticket = 0;
+    setEvents(events);
+
+    localStorage.setItem("data", JSON.stringify(events));
+    // //localStorage.setItem('panierItems', JSON.stringify(newItems));
+    // //Suppression de la quantité de l'item dans le panier
+    // const quantityItem = "places_remaining_" + id;
+    // localStorage.removeItem(quantityItem);
   };
 
   // Fonction pour augmenter la quantité
@@ -60,11 +66,11 @@ const Panier: React.FC<PanierProps> = ({setEvents}) => {
 
   // Fonction générique pour mettre à jour la quantité
   const updateItemQuantity = (id: number, newQuantity: number) => {
-    let max_attendees = 0;
+    // let max_attendees = 0;
     const newItems = items.map(i => {
       if (i.id === id) {
 
-        console.log('id:',id);
+       // console.log('id:',id);
 
         //max_attendees = i.max_attendees;
 
@@ -77,8 +83,8 @@ const Panier: React.FC<PanierProps> = ({setEvents}) => {
     setEvents(events);
 
     localStorage.setItem("data", JSON.stringify(events));
-    localStorage.setItem('panierItems', JSON.stringify(newItems));
-    localStorage.setItem("places_remaining_" + id, (max_attendees - newQuantity).toString());
+    // localStorage.setItem('panierItems', JSON.stringify(newItems));
+    // localStorage.setItem("places_remaining_" + id, (max_attendees - newQuantity).toString());
   };
 
   return (
@@ -96,7 +102,6 @@ const Panier: React.FC<PanierProps> = ({setEvents}) => {
               {items.map(item => (
                 <li key={item.id} className="cart-item">
                   <div className="titre_text">
-                   
                     <img className='image_title' src={`/images/${item.title}.jpg`} alt={item.title} ></img> <h3>{item.title}</h3>
                   </div>
                   <div className="item-details">
@@ -120,9 +125,6 @@ const Panier: React.FC<PanierProps> = ({setEvents}) => {
                             <path d="M3.75 7.25a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z" />
                           </svg>
                         </button>
-
-
-
                         <input
                           type="number"
                           className="quantity-input"
