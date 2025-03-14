@@ -13,18 +13,7 @@ const Test = (): JSX.Element => {
             .catch(err => console.error(err));
     }, []);
 
-    const handleUpdate = (updatedEvent: Event) => {
-        const updatedEvents = events.map(event =>
-            event.id === updatedEvent.id ? updatedEvent : event
-        );
-        setEvents(updatedEvents);
-        console.log("HAAAAAAAAAA", updatedEvents);
-
-        const url = `http://localhost:3000/events`;
-        modifyData(url, 'PUT', updatedEvent);
-    };
-
-
+    //Fonction de mise à jour du JSON
     const updateEvent = (event: any) => {
         fetch(`http://localhost:3000/events/${event.id}`, {
           method: "PUT",
@@ -33,7 +22,7 @@ const Test = (): JSX.Element => {
           },
           body: JSON.stringify({
             ...event,
-            id: Number(event.id) // Forcer l'ID en number
+            id: Number(event.id)
           }),
         })
           .then(response => response.json())
@@ -41,15 +30,6 @@ const Test = (): JSX.Element => {
             console.log("Événement mis à jour :", updatedEvent);
           })
           .catch(error => console.error("Erreur lors de la mise à jour :", error));
-
-
-        // On refetche
-          fetch('http://localhost:3000/events')
-            .then(res => res.json())
-            .then(data => setEvents(data))
-            .catch(err => console.error(err));
-
-
       }
 
     return (
