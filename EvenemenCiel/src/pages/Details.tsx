@@ -96,7 +96,7 @@ const Details: React.FC<DetailsProps> = ({ events, setEvents }) => {
           <div
             className={`form-container ${showForm ? 'open' : 'closed'}`}
           >
-            {showForm && <Form eventId={event.id} max_places={event.max_attendees} events={events} setEvents={setEvents} />}
+            {showForm && <Form eventId={event.id} events={events} setEvents={setEvents} />}
           </div>
         </div>
         <Footer />
