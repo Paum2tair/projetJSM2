@@ -49,8 +49,8 @@ const Form: React.FC<FormProps> = ({ eventId, events, setEvents }) => {
       // Validation du nom
       if (formData.name.trim().length === 0) {
         errors.name = "Le nom est requis";
-      } else if (formData.name.trim().length < 2) {
-        errors.name = "Le nom doit contenir au moins 2 caractères";
+      } else if (formData.name.trim().length < 1) {
+        errors.name = "Le nom doit contenir au moins 1 caractères";
       }
       
       // Validation de l'email
