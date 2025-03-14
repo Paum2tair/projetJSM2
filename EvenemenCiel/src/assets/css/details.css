@@ -166,14 +166,16 @@
   background: var(--couleur_bleu_fonce);
 }
 .submit:disabled{
-  background: #c4c4c4;
-  border-color: #C4c4c4;
+  background-color: var(--couleur_back_disabled); 
+  border-color: var(--couleur_border_disabled); 
+  color: var(--couleur_text_disabled); 
   box-shadow: none;
   cursor: not-allowed;
 }
 .submit:disabled:hover{
   color:var(--couleur_bleu_fonce);
-  background: #c4c4c4;
+  background-color: var(--couleur_back_disabled); 
+  color: var(--couleur_text_disabled); 
 }
 
 .form .element {

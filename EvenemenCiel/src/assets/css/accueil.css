@@ -13,7 +13,9 @@
     --couleur_bdr2:#0f232e;
     --couleur_hidden:#0f232e89;
     --couleur_text_blanc: white;
-
+    --couleur_text_disabled:rgba(16, 16, 16, 0.3);
+    --couleur_back_disabled:rgba(239, 239, 239, 0.3);
+    --couleur_border_disabled:rgba(118, 118, 118, 0.3);
 }
 #root{
     min-height: 100vh;
