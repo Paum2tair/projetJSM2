@@ -35,19 +35,19 @@ Ces deux parties se situent respectivement au dessus et en dessous de chaque pag
 
 Une page d'erreur est affichée si l'utilisateur tente d'accéder à une page qui n'existe pas. Elle possède la particularité de ne pas contenir de footer.
 
-### Utilisation d'un JSON-server
-
-La création d'évènements a été réalisée en amont grâce à un fichier JSON contenant les informations nécessaires. Ce fichier est utilisé par le serveur JSON pour fournir les données à l'application. Pour lancer le serveur, il suffit de se placer dans le dossier du projet "EvenemenCiel" et de lancer la commande `json-server --watch public/events.json`. Le serveur est alors lancé et les données sont accessibles via les différents endpoints en local sur le port 3000.
-
-### Utilisation de l'application
-
-**prérequis**
+### Prérequis
 
 - nodeJS v18+
 - npm v8+
 
 Toutes les commandes présentées seront à réaliser dans le dossier du projet "EvenemenCiel".
 Avant de pouvoir utiliser le projet, il faut installer les dépendances en utilisant la commande `npm install`. 
+
+### Utilisation d'un JSON-server
+
+La création d'évènements a été réalisée en amont grâce à un fichier JSON contenant les informations nécessaires. Ce fichier est utilisé par le serveur JSON pour fournir les données à l'application. Pour lancer le serveur, il suffit de se placer dans le dossier du projet "EvenemenCiel" et de lancer la commande `json-server --watch public/events.json`. Le serveur est alors lancé et les données sont accessibles via les différents endpoints en local sur le port 3000.
+
+### Utilisation de l'application
 
 Pour lancer l'application, il suffit de se placer dans le dossier du projet "EvenemenCiel" et de lancer la commande `npm run dev`. L'application est alors lancée et accessible via un navigateur web à l'adresse `http://localhost:5173/`. Un script de production a été mis en place, pour l'activer il suffit d'utiliser `npm run build` afin de compiler le projet. Une fois cela fait, entrer `npm run start` permet d'accéder au projet sur l'adresse `http://localhost:3001/`.
 
