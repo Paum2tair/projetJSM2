@@ -41,6 +41,13 @@ La création d'évènements a été réalisée en amont grâce à un fichier JSO
 
 ### Utilisation de l'application
 
+**prérequis**
+-nodeJS v18+
+-npm v8+
+
+Toutes les commandes présentées seront à réaliser dans le dossier du projet "EvenemenCiel".
+Avant de pouvoir utiliser le projet, il faut installer les dépendances en utilisant la commande `npm install`. 
+
 Pour lancer l'application, il suffit de se placer dans le dossier du projet "EvenemenCiel" et de lancer la commande `npm run dev`. L'application est alors lancée et accessible via un navigateur web à l'adresse `http://localhost:5173/`. Un script de production a été mis en place, pour l'activer il suffit d'utiliser `npm run build` afin de compiler le projet. Une fois cela fait, entrer `npm run start` permet d'accéder au projet sur l'adresse `http://localhost:3001/`.
 
 ### Fonctionnalités futures
