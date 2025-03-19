@@ -39,6 +39,7 @@ Une page d'erreur est affichée si l'utilisateur tente d'accéder à une page qu
 
 - nodeJS v18+
 - npm v8+
+- [json-server](https://www.npmjs.com/package/json-server)
 
 Toutes les commandes présentées seront à réaliser dans le dossier du projet "EvenemenCiel".
 Avant de pouvoir utiliser le projet, il faut installer les dépendances en utilisant la commande `npm install`. 
