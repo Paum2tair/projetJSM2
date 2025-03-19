@@ -9,11 +9,17 @@ import { filterAndSortEvents } from "../scripts/eventUtils";
 interface AccueilProps {
     events: Event[];
   }
+
   const Accueil: React.FC<AccueilProps> = ({ events }) => {
+    // Variable servant à la navigation entre les pages
     const nav = useNavigate();
-    //const [events, setEvents] = useState<Event[]>([]);
+
     const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
-    const [categories, setCategories] = useState<string[]>([]); // Stocke les catégories
+
+    // Stocke les catégories
+    const [categories, setCategories] = useState<string[]>([]); 
+
+    //Stocke le nomvre de place restante pour les évènements
     const [placesRemainingMap, setPlacesRemainingMap] = useState<{ [key: number]: number }>({});
 
     // États pour les filtres
@@ -22,6 +28,7 @@ interface AccueilProps {
     const [priceOrder, setPriceOrder] = useState<"asc" | "desc" | undefined>();
     const [searchTerm, setSearchTerm] = useState<string>("");
     
+    // Fonction pour enlever les filtres
     const resetFilters = () => {
         setSelectedCategory(undefined);
         setDateFilter(undefined);
@@ -29,6 +36,7 @@ interface AccueilProps {
         setSearchTerm("");
     };
 
+    // Mettre à jour le nombre de place restante
     useEffect(() => {
         const placesMap: { [key: number]: number } = {};
         events.forEach(event => {
@@ -57,6 +65,7 @@ interface AccueilProps {
         nav(`/details/${id}`);
     };
 
+    // Fonction pour la barre de recherche
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);
     };
@@ -99,6 +108,7 @@ interface AccueilProps {
                     <button onClick={resetFilters}>Réinitialiser les filtres</button>
                 </div>
                 
+                {/* Affichage des évènements sous forme de cartes */}
                 <div className="lescarte">
                     {filteredEvents.length > 0 ? (
                         filteredEvents.map(event => (
