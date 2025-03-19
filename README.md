@@ -42,8 +42,9 @@ La création d'évènements a été réalisée en amont grâce à un fichier JSO
 ### Utilisation de l'application
 
 **prérequis**
--nodeJS v18+
--npm v8+
+
+- nodeJS v18+
+- npm v8+
 
 Toutes les commandes présentées seront à réaliser dans le dossier du projet "EvenemenCiel".
 Avant de pouvoir utiliser le projet, il faut installer les dépendances en utilisant la commande `npm install`. 
