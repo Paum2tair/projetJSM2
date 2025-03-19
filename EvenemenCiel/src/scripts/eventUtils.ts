@@ -6,6 +6,7 @@ import { Event } from "./Event";
  * @param category Catégorie des événements (optionnel).
  * @param dateFilter "past" pour les événements passés, "future" pour les futurs, sinon aucun filtre.
  * @param priceOrder "asc" pour tri croissant, "desc" pour décroissant, sinon aucun tri.
+ * @param searchTerm string pour la recherche par mot
  * @returns Liste des événements triés.
  */
 export const filterAndSortEvents = (

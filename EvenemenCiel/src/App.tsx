@@ -1,7 +1,5 @@
-import './App.css'
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import './assets/css/accueil.css'
 import Accueil from './pages/Accueil';
 import Panier from './pages/Panier';
 import Details from './pages/Details';

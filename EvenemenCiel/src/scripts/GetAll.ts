@@ -19,14 +19,3 @@ export async function getAllEvents(): Promise<Event[]> {
     throw error;
   }
 }
-
-// Exemple d'utilisation:
-// import { getAllEvents } from './GetAll';
-//
-// getAllEvents()
-//   .then(events => {
-//     console.log('Événements récupérés:', events);
-//   })
-//   .catch(error => {
-//     console.error('Échec de la récupération des événements:', error);
-//   });
