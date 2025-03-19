@@ -32,6 +32,7 @@ const Details: React.FC<DetailsProps> = ({ events, setEvents }) => {
     localStorage.setItem(localStorageShowFormKey, JSON.stringify(showForm));
   }, [showForm, localStorageShowFormKey]);
 
+  // Mettre à jour la récupération de l'id de l'évènement sélectionné
   useEffect(() => {
     const savedData = localStorage.getItem("data");
     let allEvents = savedData ? JSON.parse(savedData) : events;
@@ -52,11 +53,12 @@ const Details: React.FC<DetailsProps> = ({ events, setEvents }) => {
     }
 }, [id]);
 
-
+  // Fonction pour ouvrir/ fermer le formulaire
   const toggleForm = () => {
     setShowForm(!showForm);
   };
 
+  // Affichage du chargement ou de l'erreur en rappport avec l'évènement
   if (error) {
     return <p className="error">{error}</p>;
   }
@@ -76,6 +78,7 @@ const Details: React.FC<DetailsProps> = ({ events, setEvents }) => {
             <div className="titre_image">
               <img src={`/images/${event.title}.jpg`} alt={event.title} />
             </div>
+            {/* Affichage des informations de l'évènement */}
             <div className="text">
               <h1>{event.title}</h1>
               <p>{event.description}</p>
@@ -84,6 +87,7 @@ const Details: React.FC<DetailsProps> = ({ events, setEvents }) => {
               <p><strong>Organisateur :</strong> {event.organizer}</p>
               <p><strong>Prix :</strong> {event.price.toFixed(2)} <img src="/euro.png" alt="Euro" /></p>
 
+              {/* bouton dynamique pour la réservation */}
               <button
                 className="reservation-button"
                 onClick={toggleForm}
@@ -92,7 +96,7 @@ const Details: React.FC<DetailsProps> = ({ events, setEvents }) => {
               </button>
             </div>
           </div>
-
+          {/* Formulaire de réservation */}
           <div
             className={`form-container ${showForm ? 'open' : 'closed'}`}
           >
