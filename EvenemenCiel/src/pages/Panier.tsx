@@ -10,7 +10,7 @@ interface PanierProps {
    setEvents: React.Dispatch<React.SetStateAction<Event[]>>;
 }
 const Panier: React.FC<PanierProps> = ({setEvents}) => {
-  //Mise en place des Items du Panier 
+  //Mise en place des Items du Panier
   const [items, setItems] = useState<Event[]>([]);
   //Mise en place de la navigation
   const nav = useNavigate();
@@ -33,11 +33,9 @@ const Panier: React.FC<PanierProps> = ({setEvents}) => {
   useEffect(() => {
     //-----------------------Récupération des Items du Panier-----------------------
     let foundEvents = events.filter((event: { nb_ticket: number }) => event.nb_ticket !== 0);
-    console.log(foundEvents);
     const storedItems = foundEvents;
     if (storedItems) {
       setItems(storedItems);
-      // console.log('Panier récupéré depuis le localStorage :', storedItems);
     }
   }, []);
 
@@ -54,11 +52,11 @@ const Panier: React.FC<PanierProps> = ({setEvents}) => {
           id: Number(event.id)
         }),
       });
-      
+
       if (!response.ok) {
         throw new Error(`Erreur HTTP: ${response.status}`);
       }
-      
+
       const updatedEvent = await response.json();
       console.log("Événement mis à jour :", updatedEvent);
       return true;
@@ -69,16 +67,15 @@ const Panier: React.FC<PanierProps> = ({setEvents}) => {
   }
 
   //Fonction de validation du panier
-  const validatePanier = async () => {  
-    console.log('items:', items);
-    
+  const validatePanier = async () => {
+
     // Sauvegarder les items pour l'affichage de confirmation
     const itemsToOrder = [...items];
     const totalTicketsCount = itemsToOrder.reduce((acc, item) => acc + item.nb_ticket, 0);
     const totalPriceSum = itemsToOrder.reduce((acc, item) => acc + (item.price * item.nb_ticket), 0);
-    
+
     let allUpdatesSuccessful = true;
-    
+
     // Mettre à jour chaque événement
     for (const item of items) {
       const success = await updateJson(item);
@@ -87,11 +84,11 @@ const Panier: React.FC<PanierProps> = ({setEvents}) => {
         setErrorMessage('Une erreur est survenue lors de la mise à jour des événements.');
         break;
       }
-      
+
       events[item.id].max_attendees -= item.nb_ticket;
       events[item.id].nb_ticket = 0;
     }
-    
+
     // Mis à jour du localStorage
     if (allUpdatesSuccessful) {
       localStorage.setItem("data", JSON.stringify(events)); 
