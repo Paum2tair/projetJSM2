@@ -81,14 +81,14 @@ body {
 }
 .panier-container{
     position: absolute;
-    right:1em;
+    right:calc(4vw);
 }
 .panier-container:hover img{
     transform: scale(1.05);
 }
 .them-container {
     position: absolute;
-    left:1em; 
+    left: calc(5vw); 
     cursor: pointer;
 }
 .them-container img {
