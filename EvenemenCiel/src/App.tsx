@@ -5,10 +5,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Accueil from './pages/Accueil';
 import Panier from './pages/Panier';
 import Details from './pages/Details';
-import Test from './components/test';
 import { Event } from './scripts/Event';
 import { useEffect, useState } from 'react';
 import { getAllEvents } from './scripts/GetAll';
+import NotFound from './pages/NotFound';
 
 function App() {
   const [events, setEvents] = useState<Event[]>(() => {
@@ -34,7 +34,7 @@ function App() {
           <Route path="/" element={<> <Accueil events={events}/> </>} />
           <Route path="/details/:id" element={<> <Details events={events} setEvents={setEvents}/> </>} />
           <Route path="/panier" element={<> <Panier setEvents={setEvents} /> </>} />
-          <Route path="/test" element={<> <Test/> </>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </>
