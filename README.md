@@ -11,6 +11,8 @@ Il a pour but la mise en place d'un site de vente en ligne d'évènements.
 Il utilise le framework React afin de créer une application web dynamique et réactive.
 De fait, l'architecture du projet suit les principes de React, avec une division en composants.
 
+*Lien vers le Répertoire GitHub : * https://github.com/Paum2tair/projetJSM2
+
 ### Voici les grandes fonctionnalités : 
 
 **Page d'accueil**
