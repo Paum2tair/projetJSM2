@@ -35,7 +35,7 @@ Une page d'erreur est affichée si l'utilisateur tente d'accéder à une page qu
 
 ### Utilisation d'un JSON-server
 
-La création d'évènements a été réalisée en amont grâce à un fichier JSON contenant les informations nécessaires. Ce fichier est utilisé par le serveur JSON pour fournir les données à l'application. Pour lancer le serveur, il suffit de se placer dans le dossier du projet "EvenemenCiel" et de lancer la commande `json-server --watch public/event.json`. Le serveur est alors lancé et les données sont accessibles via les différents endpoints en local sur le port 3000.
+La création d'évènements a été réalisée en amont grâce à un fichier JSON contenant les informations nécessaires. Ce fichier est utilisé par le serveur JSON pour fournir les données à l'application. Pour lancer le serveur, il suffit de se placer dans le dossier du projet "EvenemenCiel" et de lancer la commande `json-server --watch public/events.json`. Le serveur est alors lancé et les données sont accessibles via les différents endpoints en local sur le port 3000.
 
 ### Utilisation de l'application
 
