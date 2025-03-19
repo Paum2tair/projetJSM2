@@ -39,7 +39,7 @@ La création d'évènements a été réalisée en amont grâce à un fichier JSO
 
 ### Utilisation de l'application
 
-Pour lancer l'application, il suffit de se placer dans le dossier du projet "EvenemenCiel" et de lancer la commande `npm run dev`. L'application est alors lancée et accessible via un navigateur web à l'adresse `http://localhost:5173/`.
+Pour lancer l'application, il suffit de se placer dans le dossier du projet "EvenemenCiel" et de lancer la commande `npm run dev`. L'application est alors lancée et accessible via un navigateur web à l'adresse `http://localhost:5173/`. Un script de production a été mis en place, pour l'activer il suffit d'utiliser `npm run build` afin de compiler le projet. Une fois cela fait, entrer `npm run start` permet d'accéder au projet sur l'adresse `http://localhost:3001/`.
 
 ### Fonctionnalités futures
 
