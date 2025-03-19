@@ -23,3 +23,5 @@ public/events.json
 *.njsproj
 *.sln
 *.sw?
+src/index.css
+src/App.css
